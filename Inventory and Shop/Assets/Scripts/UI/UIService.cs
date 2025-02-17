@@ -1,16 +1,42 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UIService : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    [SerializeField] private Toggle shopToggle;
+    [SerializeField] private TextMeshProUGUI shoppOrInventoryText;
+
+    private void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnShopToggleChanged(bool isOn)
     {
-        
+        if (isOn == false)
+        {
+            GameManager.Instance.inventoryController.DisableInventoryVisibility();
+            GameManager.Instance.shopController.EnableShopVisibility();
+            shoppOrInventoryText.text = "Shop";
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+        else
+        {
+           
+            GameManager.Instance.shopController.DisableShopVisibility();
+            GameManager.Instance.inventoryController.EnableInventoryVisibility();
+            shoppOrInventoryText.text = "Inventory";
+            EventSystem.current.SetSelectedGameObject(null);
+        }
     }
+
+
+
+
+
+
+
 }
