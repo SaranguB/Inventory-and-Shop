@@ -7,6 +7,13 @@ public class ShopView : MonoBehaviour
     private ShopController ShopController;
     private CanvasGroup shopCanvas;
 
+    private void OnEnable()
+    {
+        EventService.Instance.OnInventoryToggledOnEvent.AddListener
+              (DisableShopVisibility);
+
+        EventService.Instance.OnShopToggledOnEvent.AddListener(EnableShopVisibility);
+    }
     public void SetShopController(ShopController shopController)
     {
         this.ShopController = shopController;

@@ -6,7 +6,14 @@ public class InventoryView : MonoBehaviour
     InventoryController inventoryController;
     private CanvasGroup inventoryCanvas;
 
-   
+    private void OnEnable()
+    {
+        EventService.Instance.OnInventoryToggledOnEvent.AddListener
+            (EnableInventoryVisibility);
+
+        EventService.Instance.OnShopToggledOnEvent.AddListener(DisableInventoryVisibility);
+        
+    }
     public void SetInventoryController(InventoryController inventoryController)
     {
         this.inventoryController = inventoryController;

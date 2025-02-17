@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : GenericMonoSingelton<GameManager>
@@ -6,6 +7,8 @@ public class GameManager : GenericMonoSingelton<GameManager>
     public ShopController shopController { get; private set; }
     public InventoryController inventoryController { get; private set; }
     public UIService uiService { get; private set; }
+
+    
 
 
 
@@ -21,6 +24,7 @@ public class GameManager : GenericMonoSingelton<GameManager>
 
     }
 
+  
     private void CreateInventory()
     {
         InventoryModel inventoryModel = new InventoryModel();

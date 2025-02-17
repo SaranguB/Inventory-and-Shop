@@ -9,6 +9,7 @@ public class UIService : MonoBehaviour
     [SerializeField] private Toggle shopToggle;
     [SerializeField] private TextMeshProUGUI shoppOrInventoryText;
 
+  
     private void Start()
     {
 
@@ -18,16 +19,14 @@ public class UIService : MonoBehaviour
     {
         if (isOn == false)
         {
-            GameManager.Instance.inventoryController.DisableInventoryVisibility();
-            GameManager.Instance.shopController.EnableShopVisibility();
+            EventService.Instance.OnShopToggledOnEvent.InvokeEvent();
             shoppOrInventoryText.text = "Shop";
             EventSystem.current.SetSelectedGameObject(null);
         }
         else
         {
-           
-            GameManager.Instance.shopController.DisableShopVisibility();
-            GameManager.Instance.inventoryController.EnableInventoryVisibility();
+
+            EventService.Instance.OnInventoryToggledOnEvent.InvokeEvent();
             shoppOrInventoryText.text = "Inventory";
             EventSystem.current.SetSelectedGameObject(null);
         }
