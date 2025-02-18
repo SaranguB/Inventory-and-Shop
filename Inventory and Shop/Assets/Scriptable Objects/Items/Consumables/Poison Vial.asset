@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 640bac49251657d47bb1207f83593d81, type: 3}
-  m_Name: Mystic Crystal
+  m_Name: Poison Vial
   m_EditorClassIdentifier: 
-  itemName: Mystic Crystal
-  item: 0
-  itemIcon: {fileID: -5493329184363624797, guid: 730052d9d0a804e44b1ef6aac02ba498, type: 3}
-  ItemDescription: A glowing crystal that holds magical energy, often used in enchanting
-    weapons or crafting magical artifacts.
-  buyingPrice: 400
-  sellingPrice: 300
-  weight: 0.6
-  rarity: 1
-  quantity: 5
+  itemName: Poison Vial
+  item: 2
+  itemIcon: {fileID: -1670773418415759112, guid: 2220cc3515e18fa4e8d92bc84f824bdf, type: 3}
+  ItemDescription: A vial containing deadly poison, it can be thrown or applied to
+    weapons to deal poison damage over time.
+  buyingPrice: 250
+  sellingPrice: 180
+  weight: 0.3
+  rarity: 2
+  quantity: 4

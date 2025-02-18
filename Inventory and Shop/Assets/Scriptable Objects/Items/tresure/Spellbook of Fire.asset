@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 640bac49251657d47bb1207f83593d81, type: 3}
-  m_Name: Mystic Crystal
+  m_Name: Spellbook of Fire
   m_EditorClassIdentifier: 
-  itemName: Mystic Crystal
+  itemName: Spellbook of Fire
   item: 0
-  itemIcon: {fileID: -5493329184363624797, guid: 730052d9d0a804e44b1ef6aac02ba498, type: 3}
-  ItemDescription: A glowing crystal that holds magical energy, often used in enchanting
-    weapons or crafting magical artifacts.
-  buyingPrice: 400
-  sellingPrice: 300
-  weight: 0.6
-  rarity: 1
-  quantity: 5
+  itemIcon: {fileID: 4966549419495330274, guid: f15771c10b95f2b419f112c1b6f9932f, type: 3}
+  ItemDescription: A magical spellbook that teaches the wielder powerful fire-based
+    spells, including Fireball, Flame Wave, and Fire Shield.
+  buyingPrice: 500
+  sellingPrice: 350
+  weight: 0.8
+  rarity: 3
+  quantity: 2
