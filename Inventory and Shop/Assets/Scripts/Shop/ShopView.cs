@@ -44,12 +44,7 @@ public class ShopView : MonoBehaviour
     private void DisplayItems()
     {
 
-        // Check if the item list is not empty
-        if (itemDatabase.items.Count > 0)
-        {
-            Debug.Log("its in loop");
-
-        }
+        
         foreach (ItemProperty item in itemDatabase.items)
         {
 
@@ -57,15 +52,12 @@ public class ShopView : MonoBehaviour
             ItemDisplay itemDisplay = newItem.GetComponent<ItemDisplay>();
 
 
-            if (itemDisplay!=null)
+            if (itemDisplay != null)
             {
                 itemDisplay.itemProperty = item;
                 itemDisplay.DisplayUI();
             }
-            else
-            {
-                Debug.Log("its null");
-            }
+
         }
     }
 
