@@ -23,11 +23,15 @@ public class InventoryView : MonoBehaviour
     public void EnableInventoryVisibility()
     {
         inventoryCanvas.alpha = 1;
+        inventoryCanvas.blocksRaycasts = true;
+        inventoryCanvas.interactable = true;
     }
 
     public void DisableInventoryVisibility()
     {
         inventoryCanvas.alpha = 0;
+        inventoryCanvas.blocksRaycasts = false;
+        inventoryCanvas.interactable = false;
     }
 
 }

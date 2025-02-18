@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Lightbringer
   item: 1
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -1125846772116236624, guid: 6fae1746d5d84c840aa5cb68355e2655, type: 3}
   ItemDescription: A radiant sword that purifies darkness and heals its wielder with
     every strike, banishing undead and demons.
   buyingPrice: 1200

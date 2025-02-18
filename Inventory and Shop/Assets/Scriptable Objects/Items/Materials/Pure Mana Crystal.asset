@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Pure Mana Crystal
   item: 0
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -3885244824138401593, guid: bb16e20e581d0b94996b2a8027e60e1f, type: 3}
   ItemDescription: A crystal containing concentrated mana, used in high-level enchantments
     or as a power source for arcane devices.
   buyingPrice: 800
