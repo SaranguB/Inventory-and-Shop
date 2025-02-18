@@ -8,11 +8,11 @@ public class ItemProperty : ScriptableObject
 
     public string itemName;
     public ItemTypes item;
-    public Image itemIcon;
+    public Sprite itemIcon;
     public string ItemDescription;
     public int buyingPrice;
     public int sellingPrice;
-    public int weight;
+    public float weight;
     public Rarity rarity;
     public int quantity;
 
@@ -20,9 +20,9 @@ public class ItemProperty : ScriptableObject
     [Serializable]
     public enum ItemTypes
     {
-        Materiels,
-        Wepons,
-        ConsumConsumables,
+        Materials,
+        Weapons,
+        Consumables,
         Treasure
     }
 

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640bac49251657d47bb1207f83593d81, type: 3}
+  m_Name: Spiritpiercer
+  m_EditorClassIdentifier: 
+  itemName: Spiritpiercer
+  item: 1
+  itemIcon: {fileID: 7463455579408542410, guid: 4b16d10074c33a1459ebb5e8a0b2b193, type: 3}
+  ItemDescription: Forged from the ethereal realm, this blade can cut through both
+    physical and spiritual barriers, banishing spirits and dealing true damage.
+  buyingPrice: 600
+  sellingPrice: 450
+  weight: 3
+  rarity: 4
+  quantity: 2
