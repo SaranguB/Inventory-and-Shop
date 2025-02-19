@@ -1,10 +1,15 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InventoryView : MonoBehaviour
 {
     InventoryController inventoryController;
     private CanvasGroup inventoryCanvas;
+
+    [SerializeField] private Transform parentPanel;
+    [SerializeField] private GameObject itemPrefab;
+
 
     private void OnEnable()
     {
@@ -12,7 +17,7 @@ public class InventoryView : MonoBehaviour
             (EnableInventoryVisibility);
 
         EventService.Instance.OnShopToggledOnEvent.AddListener(DisableInventoryVisibility);
-        
+
     }
     public void SetInventoryController(InventoryController inventoryController)
     {
@@ -34,4 +39,21 @@ public class InventoryView : MonoBehaviour
         inventoryCanvas.interactable = false;
     }
 
+    public void GatheResource()
+    {
+        inventoryController.GatherResource();
+    }
+
+    public void DisplayItem(int index)
+    {
+        GameObject newItem = Instantiate(itemPrefab, parentPanel);
+        ItemDisplay itemDisplay = newItem.GetComponent<ItemDisplay>();
+
+        if (itemDisplay != null)
+        {
+            itemDisplay.itemProperty = inventoryController.GetItemDatabase()[index];
+            itemDisplay.DisplayUI();
+        }
+        EventSystem.current.SetSelectedGameObject(null);
+    }
 }

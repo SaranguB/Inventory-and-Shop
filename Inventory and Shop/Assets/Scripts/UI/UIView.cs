@@ -24,17 +24,6 @@ public class UIView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemSellingPriceText;
 
 
-
-    /*[SerializeField] private string itemName;
-    [SerializeField] private ItemTypes item;
-    [SerializeField] private Sprite itemIcon;
-    [SerializeField] private string ItemDescription;
-    [SerializeField] private int buyingPrice;
-    [SerializeField] private int sellingPrice;
-    [SerializeField] private float weight;
-    [SerializeField] private Rarity rarity;
-    [SerializeField] private int quantity;*/
-
     private UIController uiController;
 
     public void OnShopToggleChanged(bool isOn)
