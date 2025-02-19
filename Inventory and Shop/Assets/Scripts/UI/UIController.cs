@@ -25,4 +25,9 @@ public class UIController
         }
         uiView.UpdateShopORInventoryText(!isOn);
     }
+
+    public void SetItemDetailsPanel(bool isOn, ItemProperty itemProperty)
+    {
+        uiView.SetItemDetailPanelView(isOn, itemProperty);
+    }
 }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Guide to the Elemental Realms
   m_EditorClassIdentifier: 
   itemName: Guide to the Elemental Realms
-  item: 0
-  itemIcon: {fileID: -1828912754737453803, guid: a7cb9fe626ff05140ae3af765085715c, type: 3}
+  item: 3
+  itemIcon: {fileID: -3783700890246066973, guid: a7cb9fe626ff05140ae3af765085715c, type: 3}
   ItemDescription: A detailed guide to the elemental realms, offering insight into
     elemental magic and techniques for controlling fire, water, earth, and air.
   buyingPrice: 600

@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: a7cb9fe626ff05140ae3af765085715c
+guid: 94d1e243e94e876469125b9400da2eeb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1828912754737453803
-    second: item28_0
+      213: -4156106101942936878
+    second: plus-minus-sign-icon-green-260nw-1901473198-removebg-preview_0
   - first:
-      213: -3783700890246066973
-    second: item28_1
+      213: -6824643278845506119
+    second: plus-minus-sign-icon-green-260nw-1901473198-removebg-preview_1
+  - first:
+      213: -7493862467045319692
+    second: plus-minus-sign-icon-green-260nw-1901473198-removebg-preview_2
+  - first:
+      213: -478136693234775875
+    second: plus-minus-sign-icon-green-260nw-1901473198-removebg-preview_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -116,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: item28_1
+      name: plus-minus-sign-icon-green-260nw-1901473198-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 248
-        y: 175
-        width: 1752
-        height: 1590
+        x: 0
+        y: 58
+        width: 202
+        height: 174
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,8 +137,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3eccd8456189d7bc0800000000000000
-      internalID: -3783700890246066973
+      spriteID: 2da9bd0358b8256c0800000000000000
+      internalID: -4156106101942936878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plus-minus-sign-icon-green-260nw-1901473198-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 68
+        width: 163
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bd08ada81ff941a0800000000000000
+      internalID: -6824643278845506119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plus-minus-sign-icon-green-260nw-1901473198-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 2
+        width: 87
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fb91285ac3700890800000000000000
+      internalID: -7493862467045319692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plus-minus-sign-icon-green-260nw-1901473198-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 2
+        width: 68
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db849a5f5315d59f0800000000000000
+      internalID: -478136693234775875
       vertices: []
       indices: 
       edges: []
@@ -141,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8f48da6d280a07c41b8e55c2e66acd49
+    spriteID: 06833c1da9bc1e74c8de31fb7e6b62f3
     internalID: 0
     vertices: []
     indices: 
@@ -151,7 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      item28_1: -3783700890246066973
+      plus-minus-sign-icon-green-260nw-1901473198-removebg-preview_0: -4156106101942936878
+      plus-minus-sign-icon-green-260nw-1901473198-removebg-preview_1: -6824643278845506119
+      plus-minus-sign-icon-green-260nw-1901473198-removebg-preview_2: -7493862467045319692
+      plus-minus-sign-icon-green-260nw-1901473198-removebg-preview_3: -478136693234775875
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

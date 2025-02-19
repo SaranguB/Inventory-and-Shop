@@ -10,6 +10,9 @@ public class ItemDisplay : MonoBehaviour
     [SerializeField] private Toggle itemToggle;
     private ToggleGroup itemToggleGroup;
 
+    
+
+
 
     public void DisplayUI()
     {
@@ -19,4 +22,15 @@ public class ItemDisplay : MonoBehaviour
         itemImage.sprite = itemProperty.itemIcon;
         quantity.text = itemProperty.quantity.ToString();
     }
+
+    public void SetItemDetailPanel(bool isOn)
+    {
+        if (isOn)
+            GameManager.Instance.uiController.SetItemDetailsPanel(isOn, itemProperty);
+    }
+
+
+
+
+
 }
