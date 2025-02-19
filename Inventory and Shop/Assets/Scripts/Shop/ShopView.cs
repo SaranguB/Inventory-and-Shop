@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopView : MonoBehaviour
@@ -7,7 +8,6 @@ public class ShopView : MonoBehaviour
     private ShopController ShopController;
     private CanvasGroup shopCanvas;
 
-    [SerializeField] private ItemDatabase itemDatabase;
     [SerializeField] private GameObject itemPrefab;
 
     [SerializeField] private Transform parentPanel;
@@ -24,7 +24,7 @@ public class ShopView : MonoBehaviour
     {
         this.ShopController = shopController;
         shopCanvas = this.GetComponent<CanvasGroup>();
-        DisplayItems();
+       
     }
 
     public void EnableShopVisibility()
@@ -41,11 +41,11 @@ public class ShopView : MonoBehaviour
         shopCanvas.blocksRaycasts = false;
     }
 
-    private void DisplayItems()
+    public void DisplayItems(List<ItemProperty> items)
     {
 
         
-        foreach (ItemProperty item in itemDatabase.items)
+        foreach (ItemProperty item in items)
         {
 
             GameObject newItem = Instantiate(itemPrefab, parentPanel);

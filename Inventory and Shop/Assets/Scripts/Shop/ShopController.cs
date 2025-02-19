@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopController
@@ -9,10 +9,11 @@ public class ShopController
 
     public ShopController(ShopView shopView, ShopModel shopModel)
     {
+        this.shopModel = shopModel;
         this.shopView = shopView;
 
         this.shopView.SetShopController(this);
-        this.shopModel = shopModel;
+        LoadShopItems();
     }
 
     public void EnableShopVisibility()
@@ -22,5 +23,12 @@ public class ShopController
     public void DisableShopVisibility()
     {
         shopView.DisableShopVisibility();
+    
+    }
+
+    public void LoadShopItems()
+    {
+        List<ItemProperty> items = shopModel.GetItemDatabase();
+        shopView.DisplayItems(items);
     }
 }

@@ -1,16 +1,28 @@
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class UIController : MonoBehaviour
+public class UIController
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private UIView uiView;
+
+    public UIController(UIView uiView)
     {
-        
+        this.uiView = uiView;
+
+        uiView.SetUIController(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnShopToggleChanged(bool isOn)
     {
-        
+        if (isOn == false)
+        {
+            EventService.Instance.OnShopToggledOnEvent.InvokeEvent();
+        }
+        else
+        { 
+            EventService.Instance.OnInventoryToggledOnEvent.InvokeEvent();
+        }
+        uiView.UpdateShopORInventoryText(!isOn);
     }
 }

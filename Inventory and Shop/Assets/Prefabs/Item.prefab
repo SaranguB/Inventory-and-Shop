@@ -527,6 +527,7 @@ MonoBehaviour:
   itemProperty: {fileID: 11400000, guid: c48f82a3ab30e414c8938f700e32105a, type: 2}
   itemImage: {fileID: 3096323801807145878}
   quantity: {fileID: 3630344350305666786}
+  itemToggle: {fileID: 496461599926177888}
 --- !u!225 &2570199306007491520
 CanvasGroup:
   m_ObjectHideFlags: 0
