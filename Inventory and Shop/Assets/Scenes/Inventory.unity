@@ -1078,6 +1078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdce93a73d78174aa8d88448fe3d87a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopFilterController: {fileID: 869513398}
   itemPrefab: {fileID: 5574034519984340831, guid: b613309bc5398f64a97ea84fd0874ae0, type: 3}
   parentPanel: {fileID: 933685095}
 --- !u!225 &192736089
@@ -1895,6 +1896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentPanel: {fileID: 1255709874}
   itemPrefab: {fileID: 5574034519984340831, guid: b613309bc5398f64a97ea84fd0874ae0, type: 3}
+  inventoryFilterController: {fileID: 569561444}
 --- !u!225 &392759457
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3208,6 +3210,7 @@ GameObject:
   - component: {fileID: 569561443}
   - component: {fileID: 569561441}
   - component: {fileID: 569561440}
+  - component: {fileID: 569561444}
   m_Layer: 5
   m_Name: FIlterButton
   m_TagString: Untagged
@@ -3284,6 +3287,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569561438}
   m_CullTransparentMesh: 1
+--- !u!114 &569561444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569561438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a5f948929474c84ab1ceb99c85486c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filterToggle:
+  - {fileID: 913411226}
+  - {fileID: 146882925}
+  - {fileID: 848283815}
+  - {fileID: 1098743941}
 --- !u!1 &570714469
 GameObject:
   m_ObjectHideFlags: 0
@@ -9629,7 +9649,19 @@ MonoBehaviour:
   m_Group: {fileID: 569561440}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 569561444}
+        m_TargetAssemblyTypeName: FilterController, Assembly-CSharp
+        m_MethodName: ShowAll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &1712047803
 GameObject:
