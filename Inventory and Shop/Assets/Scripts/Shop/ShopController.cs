@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class ShopController
 
     private ShopView shopView;
     private ShopModel shopModel;
-
+    FilterController filter;
     public ShopController(ShopView shopView, ShopModel shopModel)
     {
         this.shopModel = shopModel;
@@ -30,5 +31,14 @@ public class ShopController
     {
         List<ItemProperty> items = shopModel.GetItemDatabase();
         shopView.DisplayItems(items);
+    }
+
+    public void StoreItem(ItemDisplay itemDisplay, FilterController shopFilterController)
+    {
+        /*if(shopFilterController!=null)
+        {
+            Debug.Log("null");
+        }*/
+        shopFilterController.AddItemDisplay(itemDisplay);
     }
 }

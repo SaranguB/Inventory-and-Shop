@@ -5,8 +5,9 @@ using UnityEngine;
 public class ShopView : MonoBehaviour
 {
 
-    private ShopController ShopController;
+    private ShopController shopController;
     private CanvasGroup shopCanvas;
+    [SerializeField] private FilterController shopFilterController;
 
     [SerializeField] private GameObject itemPrefab;
 
@@ -22,9 +23,9 @@ public class ShopView : MonoBehaviour
 
     public void SetShopController(ShopController shopController)
     {
-        this.ShopController = shopController;
+        this.shopController = shopController;
         shopCanvas = this.GetComponent<CanvasGroup>();
-       
+
     }
 
     public void EnableShopVisibility()
@@ -32,8 +33,8 @@ public class ShopView : MonoBehaviour
         shopCanvas.alpha = 1;
         shopCanvas.interactable = true;
         shopCanvas.blocksRaycasts = true;
-    } 
-    
+    }
+
     public void DisableShopVisibility()
     {
         shopCanvas.alpha = 0;
@@ -44,13 +45,13 @@ public class ShopView : MonoBehaviour
     public void DisplayItems(List<ItemProperty> items)
     {
 
-        
+
         foreach (ItemProperty item in items)
         {
 
             GameObject newItem = Instantiate(itemPrefab, parentPanel);
             ItemDisplay itemDisplay = newItem.GetComponent<ItemDisplay>();
-
+            shopController.StoreItem(itemDisplay, shopFilterController);
 
             if (itemDisplay != null)
             {

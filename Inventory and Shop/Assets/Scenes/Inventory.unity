@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 52876402}
   - component: {fileID: 52876403}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: WeponsToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -771,7 +771,7 @@ GameObject:
   - component: {fileID: 160585673}
   - component: {fileID: 160585674}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: MaterialsToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1103,7 +1103,7 @@ GameObject:
   - component: {fileID: 200629983}
   - component: {fileID: 200629984}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: ConsumabelsToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4655,7 +4655,7 @@ GameObject:
   - component: {fileID: 711931761}
   - component: {fileID: 711931762}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: TresureToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5250,6 +5250,7 @@ GameObject:
   - component: {fileID: 869513395}
   - component: {fileID: 869513396}
   - component: {fileID: 869513397}
+  - component: {fileID: 869513398}
   m_Layer: 5
   m_Name: FIlterButton
   m_TagString: Untagged
@@ -5326,6 +5327,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
+--- !u!114 &869513398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869513392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a5f948929474c84ab1ceb99c85486c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filterToggle:
+  - {fileID: 160585674}
+  - {fileID: 52876403}
+  - {fileID: 200629984}
+  - {fileID: 711931762}
 --- !u!1 &884562212
 GameObject:
   m_ObjectHideFlags: 0
@@ -9750,7 +9768,7 @@ GameObject:
   - component: {fileID: 1753250946}
   - component: {fileID: 1753250947}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: AllToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9822,7 +9840,19 @@ MonoBehaviour:
   m_Group: {fileID: 869513397}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 869513398}
+        m_TargetAssemblyTypeName: FilterController, Assembly-CSharp
+        m_MethodName: ShowAll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &1801222230
 GameObject:

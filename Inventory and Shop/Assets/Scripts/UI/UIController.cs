@@ -30,4 +30,7 @@ public class UIController
     {
         uiView.SetItemDetailPanelView(isOn, itemProperty);
     }
+
+    
+    
 }

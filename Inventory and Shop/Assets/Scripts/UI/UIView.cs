@@ -11,6 +11,7 @@ public class UIView : MonoBehaviour
     [SerializeField] private Toggle shopToggle;
     [SerializeField] private TextMeshProUGUI shoppOrInventoryText;
     [SerializeField] private CanvasGroup itemDeatilsPanelCanvasGroup;
+    
 
     [Header("Item Properties")]
     [SerializeField] private Image itemImage;
@@ -26,14 +27,19 @@ public class UIView : MonoBehaviour
 
     private UIController uiController;
 
+    private void Start()
+    {
+        
+    }
     public void OnShopToggleChanged(bool isOn)
     {
         uiController.OnShopToggleChanged(isOn);
+        itemDeatilsPanelCanvasGroup.alpha = 0;
     }
 
     public void UpdateShopORInventoryText(bool isShopOpen)
     {
-        shoppOrInventoryText.text = isShopOpen ? "Shop" : "Invenory";
+        shoppOrInventoryText.text = isShopOpen ? "Shop" : "Inventory";
         EventSystem.current.SetSelectedGameObject(null);
 
     }
@@ -75,4 +81,11 @@ public class UIView : MonoBehaviour
     {
         Debug.Log("Clicked");
     }
+
+    public enum FilterState
+    {
+
+    }
+
+
 }

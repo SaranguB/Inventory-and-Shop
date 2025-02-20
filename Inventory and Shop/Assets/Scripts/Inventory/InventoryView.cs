@@ -10,6 +10,9 @@ public class InventoryView : MonoBehaviour
     [SerializeField] private Transform parentPanel;
     [SerializeField] private GameObject itemPrefab;
 
+    [SerializeField] private FilterController inventoryFilterController;
+
+
 
     private void OnEnable()
     {
@@ -48,12 +51,14 @@ public class InventoryView : MonoBehaviour
     {
         GameObject newItem = Instantiate(itemPrefab, parentPanel);
         ItemDisplay itemDisplay = newItem.GetComponent<ItemDisplay>();
+        inventoryController.StoreItem(itemDisplay, inventoryFilterController);
 
         if (itemDisplay != null)
         {
             itemDisplay.itemProperty = inventoryController.GetItemDatabase()[index];
             itemDisplay.DisplayUI();
         }
+        inventoryController.ApplyFilter(inventoryFilterController);
         EventSystem.current.SetSelectedGameObject(null);
     }
 }

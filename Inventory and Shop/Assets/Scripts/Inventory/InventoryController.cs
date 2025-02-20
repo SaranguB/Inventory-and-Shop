@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class InventoryController
 {
     private InventoryView inventoryView;
     private InventoryModel inventoryModel;
-
+    
     public InventoryController(InventoryView inventoryView, InventoryModel inventoryModel)
     {
         this.inventoryView = inventoryView;
@@ -46,5 +47,14 @@ public class InventoryController
         return inventoryModel.getItemDatabase();
     }
 
+    public void ApplyFilter(FilterController inventoryFilterController)
+    {
+        inventoryFilterController.ApplyFilter();
+    }
 
+    public void StoreItem(ItemDisplay itemDisplay, FilterController inventoryFilterController)
+    {
+       
+        inventoryFilterController.AddItemDisplay(itemDisplay);
+    }
 }
