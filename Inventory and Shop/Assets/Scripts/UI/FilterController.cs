@@ -17,7 +17,7 @@ public class FilterController : MonoBehaviour
     {
         
         currentFilterState = ItemProperty.ItemTypes.Materials;
-        Debug.Log(currentFilterState);
+       
 
         toggleFilterMap = new Dictionary<Toggle, ItemProperty.ItemTypes>
         {

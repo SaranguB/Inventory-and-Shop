@@ -11,6 +11,7 @@ public class UIView : MonoBehaviour
     [SerializeField] private Toggle shopToggle;
     [SerializeField] private TextMeshProUGUI shoppOrInventoryText;
     [SerializeField] private CanvasGroup itemDeatilsPanelCanvasGroup;
+    [SerializeField] private CanvasGroup sellSection;
     
 
     [Header("Item Properties")]
@@ -27,9 +28,14 @@ public class UIView : MonoBehaviour
 
     private UIController uiController;
 
-    private void Start()
+    private void OnEnable()
     {
-        
+    }
+
+    private void OnDisable()
+    {
+        EventService.Instance.OnItemSelectedEventWithParams.RemoveListener(uiController.SetItemDetailsPanel);
+
     }
     public void OnShopToggleChanged(bool isOn)
     {
@@ -47,6 +53,8 @@ public class UIView : MonoBehaviour
     public void SetUIController(UIController uiController)
     {
         this.uiController = uiController;
+        EventService.Instance.OnItemSelectedEventWithParams.AddListener(uiController.SetItemDetailsPanel);
+
     }
 
     public void SetItemDetailPanelView(bool isOn, ItemProperty itemProperty)
@@ -55,6 +63,7 @@ public class UIView : MonoBehaviour
         {
             itemDeatilsPanelCanvasGroup.alpha = 1;
             SetItemDetailPanelValues(itemProperty);
+            EventService.Instance.OnItemSelectedEvent.InvokeEvent();
         }
     }
 

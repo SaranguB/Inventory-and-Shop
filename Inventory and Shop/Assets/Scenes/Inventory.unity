@@ -1081,6 +1081,9 @@ MonoBehaviour:
   shopFilterController: {fileID: 869513398}
   itemPrefab: {fileID: 5574034519984340831, guid: b613309bc5398f64a97ea84fd0874ae0, type: 3}
   parentPanel: {fileID: 933685095}
+  buySection: {fileID: 1933660661}
+  quantityText: {fileID: 1407686760}
+  buyingPriceText: {fileID: 955960171}
 --- !u!225 &192736089
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1897,6 +1900,7 @@ MonoBehaviour:
   parentPanel: {fileID: 1255709874}
   itemPrefab: {fileID: 5574034519984340831, guid: b613309bc5398f64a97ea84fd0874ae0, type: 3}
   inventoryFilterController: {fileID: 569561444}
+  sellingSection: {fileID: 957515875}
 --- !u!225 &392759457
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6063,7 +6067,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6166,7 +6170,7 @@ CanvasGroup:
   m_GameObject: {fileID: 957515872}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &982608337
@@ -9435,7 +9439,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 392759456}
         m_TargetAssemblyTypeName: InventoryView, Assembly-CSharp
-        m_MethodName: GatheResource
+        m_MethodName: GatherResource
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10496,6 +10500,7 @@ MonoBehaviour:
   shopToggle: {fileID: 610293706}
   shoppOrInventoryText: {fileID: 450190017}
   itemDeatilsPanelCanvasGroup: {fileID: 947902262}
+  sellSection: {fileID: 0}
   itemImage: {fileID: 1347574374}
   itemName: {fileID: 1423464745}
   itemTypeText: {fileID: 163406408}

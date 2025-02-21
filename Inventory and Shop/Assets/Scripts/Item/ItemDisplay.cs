@@ -10,14 +10,13 @@ public class ItemDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI quantity;
     [SerializeField] private Toggle itemToggle;
     private ToggleGroup itemToggleGroup;
-    [SerializeField] private CanvasGroup itemCanvasGroup;
+   
 
     public ItemProperty.ItemTypes itemType { get; private set; }
 
 
-    private void Start()
+    private void OnEnable()
     {
-        itemCanvasGroup = GetComponent<CanvasGroup>();
     }
     public void DisplayUI()
     {
@@ -33,7 +32,7 @@ public class ItemDisplay : MonoBehaviour
     public void SetItemDetailPanel(bool isOn)
     {
         if (isOn)
-            GameManager.Instance.uiController.SetItemDetailsPanel(isOn, itemProperty);
+            EventService.Instance.OnItemSelectedEventWithParams.InvokeEvent(isOn, itemProperty);
     }
 
     public void disableItem()
