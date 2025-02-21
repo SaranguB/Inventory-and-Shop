@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class InventoryModel
 {
-
+    public ItemView currentItem;
     private ItemDatabase itemDatabase;
     private List<ItemProperty> Items;
     public int inventoryValue = 5;
@@ -27,7 +27,7 @@ public class InventoryModel
 
         foreach (ItemProperty item in itemDatabase.items)
         {
-            itemQuantities[item.itemId] = new List<int>();
+            itemQuantities[item.itemID] = new List<int>();
         }
 
     }

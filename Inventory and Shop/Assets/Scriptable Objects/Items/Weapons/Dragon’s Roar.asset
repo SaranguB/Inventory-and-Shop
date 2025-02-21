@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640bac49251657d47bb1207f83593d81, type: 3}
   m_Name: "Dragon\u2019s Roar"
   m_EditorClassIdentifier: 
-  itemId: 16
+  itemID: 16
   itemName: "Dragon\u2019s Roar"
   item: 1
   itemIcon: {fileID: -8893190090612047224, guid: c9d7525881c3bfb4b8bfbf1f9f33c659, type: 3}

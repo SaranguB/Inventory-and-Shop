@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640bac49251657d47bb1207f83593d81, type: 3}
   m_Name: Wand of the Eternal Flame
   m_EditorClassIdentifier: 
-  itemId: 21
+  itemID: 21
   itemName: Wand of the Eternal Flame
   item: 1
   itemIcon: {fileID: 7669951894810734190, guid: ada0ce264994d044cae84023b6a96e54, type: 3}

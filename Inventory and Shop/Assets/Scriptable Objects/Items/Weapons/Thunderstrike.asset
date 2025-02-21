@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640bac49251657d47bb1207f83593d81, type: 3}
   m_Name: Thunderstrike
   m_EditorClassIdentifier: 
-  itemId: 20
+  itemID: 20
   itemName: Thunderstrike
   item: 1
   itemIcon: {fileID: 2719916602837695721, guid: e4548d4098dbc94418a6bb0124e013fe, type: 3}

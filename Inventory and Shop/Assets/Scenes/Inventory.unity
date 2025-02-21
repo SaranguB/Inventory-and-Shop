@@ -1902,7 +1902,7 @@ MonoBehaviour:
   inventoryFilterController: {fileID: 569561444}
   sellSection: {fileID: 957515875}
   quantityText: {fileID: 434446829}
-  buyingPriceText: {fileID: 1651243797}
+  sellingPriceText: {fileID: 1651243797}
 --- !u!225 &392759457
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2695,7 +2695,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 513789315}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 392759456}
+        m_TargetAssemblyTypeName: InventoryView, Assembly-CSharp
+        m_MethodName: AddQuantity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &513789315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3852,7 +3864,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 619443465}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 392759456}
+        m_TargetAssemblyTypeName: InventoryView, Assembly-CSharp
+        m_MethodName: ReduceQuantity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &619443465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6467,7 +6491,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 992968351}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 192736088}
+        m_TargetAssemblyTypeName: ShopView, Assembly-CSharp
+        m_MethodName: AddBuySectionValues
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &992968351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7268,7 +7304,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1217507317}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 192736088}
+        m_TargetAssemblyTypeName: ShopView, Assembly-CSharp
+        m_MethodName: ReduceBuySectionValues
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1217507317
 MonoBehaviour:
   m_ObjectHideFlags: 0

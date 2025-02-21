@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640bac49251657d47bb1207f83593d81, type: 3}
   m_Name: Guide to the Elemental Realms
   m_EditorClassIdentifier: 
-  itemId: 11
+  itemID: 11
   itemName: Guide to the Elemental Realms
   item: 3
   itemIcon: {fileID: -3783700890246066973, guid: a7cb9fe626ff05140ae3af765085715c, type: 3}

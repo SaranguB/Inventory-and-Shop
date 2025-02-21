@@ -28,7 +28,7 @@ public class ShopView : MonoBehaviour
         EventService.Instance.OnShopToggledOnEvent.AddListener(EnableShopVisibility);
 
         EventService.Instance.OnItemSelectedEvent.AddListener(EnableBuyingSection);
-        EventService.Instance.OnItemSelectedEventWithParams.AddListener(SetBuyingSectionValues);
+        EventService.Instance.OnItemSelectedEventWithParams.AddListener(SetCurrentSelected);
 
     }
 
@@ -40,7 +40,7 @@ public class ShopView : MonoBehaviour
         EventService.Instance.OnShopToggledOnEvent.RemoveListener(EnableShopVisibility);
 
         EventService.Instance.OnItemSelectedEvent.RemoveListener(EnableBuyingSection);
-        EventService.Instance.OnItemSelectedEventWithParams.RemoveListener(SetBuyingSectionValues);
+        EventService.Instance.OnItemSelectedEventWithParams.RemoveListener(SetCurrentSelected);
 
 
     }
@@ -71,7 +71,6 @@ public class ShopView : MonoBehaviour
     public void DisplayItems(List<ItemProperty> items)
     {
 
-
         foreach (ItemProperty item in items)
         {
 
@@ -82,6 +81,7 @@ public class ShopView : MonoBehaviour
             if (itemDisplay != null)
             {
                 itemDisplay.itemProperty = item;
+                shopController.SetItemQuantities(itemDisplay.itemProperty.itemID, itemDisplay.itemProperty.quantity);
                 itemDisplay.ShopDisplayUI();
             }
 
@@ -98,15 +98,55 @@ public class ShopView : MonoBehaviour
         }
     } 
 
-    public void SetBuyingSectionValues(bool isOn, ItemView itemDisplay)
+    public void SetCurrentSelected(bool isOn, ItemView itemView)
     {
-        
-        if(isOn)
+        shopController.SetCurrentSelectedItem(itemView);
+        SetBuySectionValues(isOn, itemView);
+
+    }
+
+    private void SetBuySectionValues(bool isOn, ItemView itemView)
+    {
+        if (isOn)
         {
-            quantityText.text = itemDisplay.itemProperty.quantity.ToString();
-            buyingPriceText.text = itemDisplay.itemProperty.buyingPrice.ToString();
+            int itemID = itemView.itemProperty.itemID;
+            int availableQuantity = shopController.GetItemQuantity(itemID);
+
+            quantityText.text = 0.ToString();
+            buyingPriceText.text = 0.ToString();
         }
     }
+
+    public void AddBuySectionValues()
+    {
+        int itemID = shopController.GetCurrentItem().itemProperty.itemID;
+        int AvailableQuantity = shopController.GetItemQuantity(itemID);
+        int quantity = int.Parse(quantityText.text);
+        int buyingPrice = int.Parse(buyingPriceText.text);
+
+       if (quantity <AvailableQuantity)
+        {
+            quantityText.text = (quantity + 1).ToString();
+            buyingPriceText.text = (buyingPrice + shopController.GetCurrentItem().itemProperty.buyingPrice).ToString();
+        }
+    }
+
+    public void ReduceBuySectionValues()
+    {
+        int itemID = shopController.GetCurrentItem().itemProperty.itemID;
+        int AvailableQuantity = shopController.GetItemQuantity(itemID);
+        int quantity = int.Parse(quantityText.text);
+        int buyingPrice = int.Parse(buyingPriceText.text);
+
+        if (quantity > 0)
+        {
+            quantityText.text = (quantity - 1).ToString();
+            buyingPriceText.text = (buyingPrice - shopController.GetCurrentItem().itemProperty.buyingPrice).ToString();
+        }
+    }
+
+
+
     public void DisableBuyingSection()
     {
        
@@ -117,4 +157,6 @@ public class ShopView : MonoBehaviour
             buySection.blocksRaycasts = false;
         }
     }
+
+  
 }

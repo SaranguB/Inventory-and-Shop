@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640bac49251657d47bb1207f83593d81, type: 3}
   m_Name: Book of Ancient Lore
   m_EditorClassIdentifier: 
-  itemId: 10
+  itemID: 10
   itemName: Book of Ancient Lore
   item: 3
   itemIcon: {fileID: 3915544672107269375, guid: 3028ac597e6fe084d8fe73fe9c641c84, type: 3}

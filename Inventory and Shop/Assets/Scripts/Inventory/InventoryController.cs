@@ -88,7 +88,7 @@ public class InventoryController
         inventoryModel.SetItemQuantities(itemId, quantity);
     }
 
-    public int GetSumQuantity(int itemID)
+    public int GetItemQuantity(int itemID)
     {
         return inventoryModel.GetQuantity(itemID).Sum();
     }
@@ -111,5 +111,13 @@ public class InventoryController
         inventoryModel.StoreInstantiatedItems(itemID, itemView);
     }
 
+    public void SetCurrentItem(ItemView itemView)
+    {
+        inventoryModel.currentItem = itemView;
+    }
 
+    public ItemView GetCurrentItem()
+    {
+        return inventoryModel.currentItem;
+    }
 }

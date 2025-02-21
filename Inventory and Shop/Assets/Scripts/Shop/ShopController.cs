@@ -41,4 +41,31 @@ public class ShopController
         }*/
         shopFilterController.AddItemDisplay(itemDisplay);
     }
+
+    public void SetItemQuantities(int itemID,int quantity )
+    {
+        shopModel.SetItemQuantities(itemID, quantity);
+    }
+
+    public void SetCurrentSelectedItem(ItemView itemView)
+    {
+        
+        shopModel.currentItem = itemView;
+    }
+
+    public ItemView GetCurrentItem()
+    {
+        if (shopModel.currentItem == null)
+        {
+            Debug.LogError("GetCurrentItem: currentItem is NULL!");
+            return null;
+        }
+
+        return shopModel.currentItem;
+    }
+
+    public int GetItemQuantity(int itemID)
+    {
+        return shopModel.GetQuantity(itemID);
+    }
 }
