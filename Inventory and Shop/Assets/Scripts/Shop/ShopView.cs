@@ -76,13 +76,13 @@ public class ShopView : MonoBehaviour
         {
 
             GameObject newItem = Instantiate(itemPrefab, parentPanel);
-            ItemDisplay itemDisplay = newItem.GetComponent<ItemDisplay>();
+            ItemView itemDisplay = newItem.GetComponent<ItemView>();
             shopController.StoreItem(itemDisplay, shopFilterController);
 
             if (itemDisplay != null)
             {
                 itemDisplay.itemProperty = item;
-                itemDisplay.DisplayUI();
+                itemDisplay.ShopDisplayUI();
             }
 
         }
@@ -98,13 +98,13 @@ public class ShopView : MonoBehaviour
         }
     } 
 
-    public void SetBuyingSectionValues(bool isOn, ItemProperty itemProperty)
+    public void SetBuyingSectionValues(bool isOn, ItemView itemDisplay)
     {
         
         if(isOn)
         {
-            quantityText.text = itemProperty.quantity.ToString();
-            buyingPriceText.text = itemProperty.buyingPrice.ToString();
+            quantityText.text = itemDisplay.itemProperty.quantity.ToString();
+            buyingPriceText.text = itemDisplay.itemProperty.buyingPrice.ToString();
         }
     }
     public void DisableBuyingSection()

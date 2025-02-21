@@ -33,7 +33,7 @@ public class ShopController
         shopView.DisplayItems(items);
     }
 
-    public void StoreItem(ItemDisplay itemDisplay, FilterController shopFilterController)
+    public void StoreItem(ItemView itemDisplay, FilterController shopFilterController)
     {
         /*if(shopFilterController!=null)
         {

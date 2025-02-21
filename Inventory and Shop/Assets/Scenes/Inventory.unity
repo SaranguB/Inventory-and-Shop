@@ -1900,7 +1900,9 @@ MonoBehaviour:
   parentPanel: {fileID: 1255709874}
   itemPrefab: {fileID: 5574034519984340831, guid: b613309bc5398f64a97ea84fd0874ae0, type: 3}
   inventoryFilterController: {fileID: 569561444}
-  sellingSection: {fileID: 957515875}
+  sellSection: {fileID: 957515875}
+  quantityText: {fileID: 434446829}
+  buyingPriceText: {fileID: 1651243797}
 --- !u!225 &392759457
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6171,7 +6173,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 0
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &982608337
 GameObject:
@@ -9309,7 +9311,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

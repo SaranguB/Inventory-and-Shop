@@ -1,6 +1,8 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
 public class InventoryView : MonoBehaviour
 {
@@ -11,7 +13,11 @@ public class InventoryView : MonoBehaviour
     [SerializeField] private GameObject itemPrefab;
 
     [SerializeField] private FilterController inventoryFilterController;
-    [SerializeField] private CanvasGroup sellingSection;
+
+    [Header("Sell Section")]
+    [SerializeField] private CanvasGroup sellSection;
+    [SerializeField] private TextMeshProUGUI quantityText;
+    [SerializeField] private TextMeshProUGUI buyingPriceText;
     bool isInventoryOn = false;
 
 
@@ -21,9 +27,10 @@ public class InventoryView : MonoBehaviour
             (EnableInventoryVisibility);
 
         EventService.Instance.OnShopToggledOnEvent.AddListener(DisableInventoryVisibility);
-        EventService.Instance.OnShopToggledOnEvent.AddListener(DisableSellingSection);
+        EventService.Instance.OnShopToggledOnEvent.AddListener(DisableSellSection);
 
-        EventService.Instance.OnItemSelectedEvent.AddListener(EnableSellingSection);
+        EventService.Instance.OnItemSelectedEvent.AddListener(EnableSellSection);
+        EventService.Instance.OnItemSelectedEventWithParams.AddListener(SetSellSectionValues);
 
     }
 
@@ -33,9 +40,9 @@ public class InventoryView : MonoBehaviour
            (EnableInventoryVisibility);
 
         EventService.Instance.OnShopToggledOnEvent.RemoveListener(DisableInventoryVisibility);
-        EventService.Instance.OnShopToggledOnEvent.RemoveListener(DisableSellingSection);
+        EventService.Instance.OnShopToggledOnEvent.RemoveListener(DisableSellSection);
 
-        EventService.Instance.OnItemSelectedEvent.RemoveListener(EnableSellingSection);
+        EventService.Instance.OnItemSelectedEvent.RemoveListener(EnableSellSection);
     }
     public void SetInventoryController(InventoryController inventoryController)
     {
@@ -66,35 +73,70 @@ public class InventoryView : MonoBehaviour
 
     public void DisplayItem(int index)
     {
-        GameObject newItem = Instantiate(itemPrefab, parentPanel);
-        ItemDisplay itemDisplay = newItem.GetComponent<ItemDisplay>();
-        inventoryController.StoreItem(itemDisplay, inventoryFilterController);
+        int itemID = inventoryController.GetItemDatabase()[index].itemId;
+        int newQuantity = inventoryController.GenerateRandomQuantity();
 
-        if (itemDisplay != null)
+        if (inventoryController.IsItemAlreadyInstantiated(itemID))
         {
-            itemDisplay.itemProperty = inventoryController.GetItemDatabase()[index];
-            itemDisplay.DisplayUI();
+            inventoryController.SetQuantitity(itemID, newQuantity);
+
+            ItemView existingItem = inventoryController.GetInstantiatedItem(itemID);
+
+            if (existingItem != null)
+            {
+                int totalQuantity = inventoryController.GetSumQuantity(existingItem.itemProperty.itemId);
+                existingItem.InventoryDisplayUI(totalQuantity);
+            }
         }
+        else
+        {
+
+            GameObject newItem = Instantiate(itemPrefab, parentPanel);
+            ItemView itemDisplay = newItem.GetComponent<ItemView>();
+
+            if (itemDisplay != null)
+            {
+                itemDisplay.itemProperty = inventoryController.GetItemDatabase()[index];
+                inventoryController.StoreItem(itemDisplay, inventoryFilterController);
+
+                inventoryController.SetQuantitity(itemDisplay.itemProperty.itemId, newQuantity);
+
+                inventoryController.StoreInstantiatedItem(itemDisplay.itemProperty.itemId, itemDisplay);
+
+                itemDisplay.InventoryDisplayUI(inventoryController.GetSumQuantity(itemDisplay.itemProperty.itemId));
+            }
+        }
+
         inventoryController.ApplyFilter(inventoryFilterController);
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    public void EnableSellingSection()
+    public void EnableSellSection()
     {
         if (isInventoryOn == true)
         {
-            sellingSection.alpha = 1;
-            sellingSection.interactable = true;
-            sellingSection.blocksRaycasts = true;
+            sellSection.alpha = 1;
+            sellSection.interactable = true;
+            sellSection.blocksRaycasts = true;
         }
     }
-    public void DisableSellingSection()
+    public void DisableSellSection()
     {
         if (isInventoryOn == false)
         {
-            sellingSection.alpha = 0;
-            sellingSection.interactable = false;
-            sellingSection.blocksRaycasts = false;
+            sellSection.alpha = 0;
+            sellSection.interactable = false;
+            sellSection.blocksRaycasts = false;
+        }
+    }
+
+    public void SetSellSectionValues(bool isOn, ItemView itemDisplay)
+    {
+
+        if (isOn)
+        {
+            quantityText.text = inventoryController.GetSumQuantity(itemDisplay.itemProperty.itemId).ToString();
+            buyingPriceText.text = itemDisplay.itemProperty.sellingPrice.ToString();
         }
     }
 }

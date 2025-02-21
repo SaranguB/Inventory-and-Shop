@@ -57,27 +57,27 @@ public class UIView : MonoBehaviour
 
     }
 
-    public void SetItemDetailPanelView(bool isOn, ItemProperty itemProperty)
+    public void SetItemDetailPanelView(bool isOn, ItemView itemView)
     {
         if (isOn == true)
         {
             itemDeatilsPanelCanvasGroup.alpha = 1;
-            SetItemDetailPanelValues(itemProperty);
+            SetItemDetailPanelValues(itemView);
             EventService.Instance.OnItemSelectedEvent.InvokeEvent();
         }
     }
 
-    public void SetItemDetailPanelValues(ItemProperty itemProperty)
+    public void SetItemDetailPanelValues(ItemView itemView)
     {
-        this.itemName.text = itemProperty.name;
-        this.itemImage.sprite = itemProperty.itemIcon;
-        this.itemTypeText.text = FormatEnumText(itemProperty.item);
-        this.itemRarityText.text = FormatEnumText(itemProperty.rarity);
-        this.itemWeightText.text = itemProperty.weight.ToString();
-        this.quantityAvailableText.text = itemProperty.quantity.ToString();
-        this.itemDescriptionText.text = itemProperty.ItemDescription;
-        this.itemBuyingPriceText.text = itemProperty.buyingPrice.ToString();
-        this.itemSellingPriceText.text = itemProperty.buyingPrice.ToString();
+        this.itemName.text = itemView.itemProperty.name;
+        this.itemImage.sprite = itemView.itemProperty.itemIcon;
+        this.itemTypeText.text = FormatEnumText(itemView.itemProperty.item);
+        this.itemRarityText.text = FormatEnumText(itemView.itemProperty.rarity);
+        this.itemWeightText.text = itemView.itemProperty.weight.ToString();
+        this.quantityAvailableText.text = itemView.quantityValue.ToString();
+        this.itemDescriptionText.text = itemView.itemProperty.ItemDescription;
+        this.itemBuyingPriceText.text = itemView.itemProperty.buyingPrice.ToString();
+        this.itemSellingPriceText.text = itemView.itemProperty.sellingPrice.ToString();
 
     }
 

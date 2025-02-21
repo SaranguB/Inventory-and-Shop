@@ -10,7 +10,7 @@ public class FilterController : MonoBehaviour
 
     private Dictionary<Toggle, ItemProperty.ItemTypes> toggleFilterMap;
 
-    private List<ItemDisplay> itemDisplay = new List<ItemDisplay>();
+    private List<ItemView> itemDisplay = new List<ItemView>();
     bool showAll = true;
 
     private void Start()
@@ -56,7 +56,7 @@ public class FilterController : MonoBehaviour
             return;
         }
 
-        foreach (ItemDisplay item in itemDisplay)
+        foreach (ItemView item in itemDisplay)
         {
             item.EnabaleItem();
         }
@@ -67,7 +67,7 @@ public class FilterController : MonoBehaviour
     {
         if (showAll == true) return;
 
-        foreach (ItemDisplay item in itemDisplay)
+        foreach (ItemView item in itemDisplay)
         {
             if (currentFilterState == item.itemType)
             {
@@ -80,7 +80,7 @@ public class FilterController : MonoBehaviour
         }
     }
 
-    public void AddItemDisplay(ItemDisplay newItemDisplay)
+    public void AddItemDisplay(ItemView newItemDisplay)
     {
         itemDisplay.Add(newItemDisplay);
     }
