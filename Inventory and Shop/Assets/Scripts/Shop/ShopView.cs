@@ -159,18 +159,23 @@ public class ShopView : MonoBehaviour
     public void Buy()
     {
         int amount = int.Parse(buyingPriceText.text);
-        int quantity = int.Parse(quantityText.text);
+        int availableQuantity = int.Parse(quantityText.text);
 
         int itemID = shopController.GetCurrentItem().itemProperty.itemID;
 
         if (shopController.GetPlayerCoin() >= amount && amount > 0)
         {
             SetBuySectionValues(true);
-            
-            amount = GameManager.Instance.playerController.GetPlayerCoinCount() - amount;
-            
-            GameManager.Instance.playerController.SetPlayerCoin(amount);
-            GameManager.Instance.inventoryController.DisplayBroughtItems(shopController.GetCurrentItem(), quantity);
+            int playerCoin = GameManager.Instance.playerController.GetPlayerCoinCount();
+            int newAmount = playerCoin - amount;
+            int newQuantity = shopController.GetItemQuantity(itemID) - availableQuantity;
+
+            shopController.DisplayBroughtItems(shopController.GetCurrentItem(), availableQuantity);
+            shopController.SetItemQuantities(itemID, newQuantity);
+            shopController.GetCurrentItem().SetQuantityText(newQuantity);
+
+            EventService.Instance.onItemChanged.InvokeEvent();
+            EventService.Instance.onItemBroughtWithIntParams.InvokeEvent(newAmount);
         }
 
 

@@ -21,9 +21,9 @@ public class PlayerController
         return playerModel.numberOfCoins;
     }
 
-    public void SetPlayerCoin(int coin)
+    public void IncreasePlayerCoin(int coin)
     {
-        playerModel.numberOfCoins = coin;
+        playerModel.numberOfCoins += coin;
         playerView.SetCoinText();
     }
 
@@ -40,6 +40,13 @@ public class PlayerController
     public float GetBagWeight()
     {
         return playerModel.bagWeight;
+
+    }
+
+    public void DecreasePlayerCoin(int coin)
+    {
+        playerModel.numberOfCoins -= coin;
+        playerView.SetCoinText();
 
     }
 }

@@ -35,11 +35,11 @@ public class ItemView : MonoBehaviour
         itemToggleGroup = GetComponentInParent<ToggleGroup>();
         itemToggle.group = itemToggleGroup;
         itemImage.sprite = itemProperty.itemIcon;
-       
+
         itemType = itemProperty.item;
         rarity = itemProperty.rarity;
     }
-    
+
 
     public void SetQuantityText(int quantity)
     {
@@ -56,11 +56,17 @@ public class ItemView : MonoBehaviour
 
     public void disableItem()
     {
-        this.gameObject.SetActive(false) ;
+        if (this.gameObject != null)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     public void EnabaleItem()
     {
-        this.gameObject.SetActive(true);
+        if (this.gameObject != null)
+        {
+            this.gameObject.SetActive(true);
+        }
     }
 }

@@ -15,9 +15,9 @@ public class FilterController : MonoBehaviour
 
     private void Start()
     {
-        
+
         currentFilterState = ItemProperty.ItemTypes.Materials;
-       
+
 
         toggleFilterMap = new Dictionary<Toggle, ItemProperty.ItemTypes>
         {
@@ -58,7 +58,8 @@ public class FilterController : MonoBehaviour
 
         foreach (ItemView item in itemDisplay)
         {
-            item.EnabaleItem();
+            if (item != null)
+                item.EnabaleItem();
         }
 
     }
@@ -71,11 +72,13 @@ public class FilterController : MonoBehaviour
         {
             if (currentFilterState == item.itemType)
             {
-                item.EnabaleItem();
+                if (item != null)
+                    item.EnabaleItem();
             }
             else
             {
-                item.disableItem();
+                if (item != null)
+                    item.disableItem();
             }
         }
     }

@@ -43,14 +43,14 @@ public class InventoryView : MonoBehaviour
         EventService.Instance.OnShopToggledOnEvent.RemoveListener(DisableSellSection);
 
         EventService.Instance.OnItemSelectedEvent.RemoveListener(EnableSellSection);
-        EventService.Instance.onItemSold.RemoveListener(inventoryController.SetPanelViews);
+        EventService.Instance.onItemChanged.RemoveListener(inventoryController.SetPanelViews);
 
     }
     public void SetInventoryController(InventoryController inventoryController)
     {
         this.inventoryController = inventoryController;
         inventoryCanvas = this.GetComponent<CanvasGroup>();
-        EventService.Instance.onItemSold.AddListener(inventoryController.SetPanelViews);
+        EventService.Instance.onItemChanged.AddListener(inventoryController.SetPanelViews);
     }
 
 
@@ -96,6 +96,7 @@ public class InventoryView : MonoBehaviour
         if (itemView != null)
         {
             InstantiateItems(itemID, newQuantity, itemView.itemProperty);
+            inventoryController.SetBagWeight(inventoryController.GetTotalWeight());
         }
     }
 
@@ -223,9 +224,9 @@ public class InventoryView : MonoBehaviour
             inventoryController.SetQuantity(itemID, quantity);
             inventoryController.GetCurrentItem().SetQuantityText(quantity);
 
-            EventService.Instance.onItemSold.InvokeEvent();
+            EventService.Instance.onItemChanged.InvokeEvent();
             EventService.Instance.onItemSoldWithIntParams.InvokeEvent(amount);
-            EventService.Instance.onItemSoldWithFloatParams.InvokeEvent(inventoryController.GetTotalWeight());
+            EventService.Instance.onItemChangedWithFloatParams.InvokeEvent(inventoryController.GetTotalWeight());
 
             if (quantity <= 0)
             {

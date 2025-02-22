@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ShopController
@@ -90,5 +91,19 @@ public class ShopController
         return GameManager.Instance.playerController.GetPlayerCoinCount();
     }
 
+    public void DisplayBroughtItems(ItemView itemView, int quantity)
+    {
+        GameManager.Instance.inventoryController.DisplayBroughtItems(GetCurrentItem(), quantity);
+    }
+
+    public void SetItemWeight(int itemID, float newWeight)
+    {
+        shopModel.SetItemWeight(itemID, newWeight);
+    }
+
+    public float GetItemWeight(int itemID)
+    {
+        return shopModel.GetItemWeight(itemID);
+    }
 
 }
