@@ -30,6 +30,7 @@ public class UIView : MonoBehaviour
 
     private void OnEnable()
     {
+
     }
 
     private void OnDisable()
@@ -74,7 +75,7 @@ public class UIView : MonoBehaviour
         this.itemTypeText.text = FormatEnumText(itemView.itemProperty.item);
         this.itemRarityText.text = FormatEnumText(itemView.itemProperty.rarity);
         this.itemWeightText.text = itemView.itemProperty.weight.ToString();
-        this.quantityAvailableText.text = itemView.quantityValue.ToString();
+        this.quantityAvailableText.text = uiController.GetQuantity().ToString();
         this.itemDescriptionText.text = itemView.itemProperty.ItemDescription;
         this.itemBuyingPriceText.text = itemView.itemProperty.buyingPrice.ToString();
         this.itemSellingPriceText.text = itemView.itemProperty.sellingPrice.ToString();

@@ -16,14 +16,6 @@ public class ItemView : MonoBehaviour
 
     public int quantityValue = 0;
 
-    private void OnEnable()
-    {
-    }
-
-    private void Start()
-    {
-        
-    }
 
     public void ShopDisplayUI()
     {

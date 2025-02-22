@@ -68,4 +68,11 @@ public class ShopController
     {
         return shopModel.GetQuantity(itemID);
     }
+
+    public bool ISShopOn()
+    {
+        return shopView.isShopOn;
+    }
+
+   
 }

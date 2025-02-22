@@ -2,7 +2,6 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
 
 public class InventoryView : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class InventoryView : MonoBehaviour
     [SerializeField] private CanvasGroup sellSection;
     [SerializeField] private TextMeshProUGUI quantityText;
     [SerializeField] private TextMeshProUGUI sellingPriceText;
-    bool isInventoryOn = false;
+    public bool isInventoryOn = false;
 
 
     private void OnEnable()
@@ -32,6 +31,7 @@ public class InventoryView : MonoBehaviour
         EventService.Instance.OnItemSelectedEvent.AddListener(EnableSellSection);
         EventService.Instance.OnItemSelectedEventWithParams.AddListener(SetSelecteddItem);
 
+
     }
 
     private void OnDisable()
@@ -43,11 +43,14 @@ public class InventoryView : MonoBehaviour
         EventService.Instance.OnShopToggledOnEvent.RemoveListener(DisableSellSection);
 
         EventService.Instance.OnItemSelectedEvent.RemoveListener(EnableSellSection);
+        EventService.Instance.onItemSold.RemoveListener(inventoryController.SetPanelViews);
+
     }
     public void SetInventoryController(InventoryController inventoryController)
     {
         this.inventoryController = inventoryController;
         inventoryCanvas = this.GetComponent<CanvasGroup>();
+        EventService.Instance.onItemSold.AddListener(inventoryController.SetPanelViews);
     }
 
 
@@ -79,7 +82,7 @@ public class InventoryView : MonoBehaviour
 
         if (inventoryController.IsItemAlreadyInstantiated(itemID))
         {
-            inventoryController.SetQuantitity(itemID, newQuantity);
+            inventoryController.SetQuantity(itemID, newQuantity);
 
             ItemView existingItem = inventoryController.GetInstantiatedItem(itemID);
 
@@ -100,7 +103,7 @@ public class InventoryView : MonoBehaviour
                 itemDisplay.itemProperty = inventoryController.GetItemDatabase()[index];
                 inventoryController.StoreItem(itemDisplay, inventoryFilterController);
 
-                inventoryController.SetQuantitity(itemDisplay.itemProperty.itemID, newQuantity);
+                inventoryController.SetQuantity(itemDisplay.itemProperty.itemID, newQuantity);
 
                 inventoryController.StoreInstantiatedItem(itemDisplay.itemProperty.itemID, itemDisplay);
 
@@ -134,10 +137,10 @@ public class InventoryView : MonoBehaviour
     public void SetSelecteddItem(bool isOn, ItemView ItemView)
     {
         inventoryController.SetCurrentItem(ItemView);
-        SetSellSectionValues(isOn, ItemView);
+        SetSellSectionValues(isOn);
     }
 
-    private void SetSellSectionValues(bool isOn, ItemView itemDisplay)
+    private void SetSellSectionValues(bool isOn)
     {
 
         if (isOn)
@@ -155,9 +158,9 @@ public class InventoryView : MonoBehaviour
         int sellingPrice = int.Parse(sellingPriceText.text);
 
         if (quantity < AvailableQuantity)
-        { 
+        {
             quantityText.text = (quantity + 1).ToString();
-            sellingPriceText.text = (sellingPrice + inventoryController.GetCurrentItem().itemProperty.buyingPrice).ToString();
+            sellingPriceText.text = (sellingPrice + inventoryController.GetCurrentItem().itemProperty.sellingPrice).ToString();
 
         }
     }
@@ -172,9 +175,42 @@ public class InventoryView : MonoBehaviour
         if (quantity > 0)
         {
             quantityText.text = (quantity - 1).ToString();
-            sellingPriceText.text = (sellingPrice - inventoryController.GetCurrentItem().itemProperty.buyingPrice).ToString();
+            sellingPriceText.text = (sellingPrice - inventoryController.GetCurrentItem().itemProperty.sellingPrice).ToString();
 
         }
     }
 
+    public void Sell()
+    {
+        int amount = int.Parse(sellingPriceText.text);
+        int quantity = int.Parse(quantityText.text);
+        int itemID = inventoryController.GetCurrentItem().itemProperty.itemID;
+        if (amount > 0)
+        {
+            SetSellSectionValues(true);
+            quantity = inventoryController.GetItemQuantity(itemID) - quantity;
+
+            inventoryController.ResetQuantities(itemID);
+            inventoryController.SetQuantity(itemID, quantity);
+            inventoryController.GetCurrentItem().SetQuantityText(quantity);
+            EventService.Instance.onItemSold.InvokeEvent();
+            EventService.Instance.onItemSoldWithParams.InvokeEvent(amount);
+        }
+
+        if (quantity <= 0)
+        {
+            RemoveItem(itemID);
+        }
+    }
+
+    private void RemoveItem(int itemID)
+    {
+        ItemView itemToRemove = inventoryController.GetCurrentItem();
+
+        if (itemToRemove != null)
+        {
+            Destroy(itemToRemove.gameObject);
+            inventoryController.RemoveItem(itemID);
+        }
+    }
 }

@@ -18,7 +18,7 @@ public class ShopView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI quantityText;
     [SerializeField] private TextMeshProUGUI buyingPriceText;
 
-    bool isShopOn = true;
+    public bool isShopOn = true;
 
     private void OnEnable()
     {

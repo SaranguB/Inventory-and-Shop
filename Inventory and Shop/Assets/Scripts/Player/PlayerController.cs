@@ -20,4 +20,10 @@ public class PlayerController
         //Debug.Log(playerModel.numberOfCoins);
         return playerModel.numberOfCoins;
     }
+
+    public void SetPlayerCoin(int coin)
+    {
+        playerModel.numberOfCoins += coin;
+        playerView.SetCoinText();
+    }
 }

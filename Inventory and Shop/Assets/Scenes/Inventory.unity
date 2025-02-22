@@ -1084,6 +1084,7 @@ MonoBehaviour:
   buySection: {fileID: 1933660661}
   quantityText: {fileID: 1407686760}
   buyingPriceText: {fileID: 955960171}
+  isShopOn: 1
 --- !u!225 &192736089
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1903,6 +1904,7 @@ MonoBehaviour:
   sellSection: {fileID: 957515875}
   quantityText: {fileID: 434446829}
   sellingPriceText: {fileID: 1651243797}
+  isInventoryOn: 0
 --- !u!225 &392759457
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4383,7 +4385,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 690809352}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 392759456}
+        m_TargetAssemblyTypeName: InventoryView, Assembly-CSharp
+        m_MethodName: Sell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &690809352
 MonoBehaviour:
   m_ObjectHideFlags: 0
