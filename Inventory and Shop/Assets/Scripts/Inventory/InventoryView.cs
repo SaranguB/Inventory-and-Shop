@@ -72,19 +72,42 @@ public class InventoryView : MonoBehaviour
 
     public void GatherResource()
     {
-        inventoryController.GatherResource();
+        if (inventoryController.GetPlayerBagWeight() < inventoryController.GetPlayerBagCapacity())
+        {
+            inventoryController.GatherResource();
+            inventoryController.SetBagWeight(inventoryController.GetTotalWeight());
+        }
     }
 
-    public void DisplayItem(int index)
+    public void DisplayGatheredItem(int index)
     {
         int itemID = inventoryController.GetItemDatabase()[index].itemID;
         int newQuantity = inventoryController.GenerateRandomQuantity();
+        ItemProperty itemProperty = inventoryController.GetItemDatabase()[index];
 
+        InstantiateItems(itemID, newQuantity, itemProperty);
+
+    }
+
+    public void DisplayBroughtItem(ItemView itemView, int newQuantity)
+    {
+        int itemID = itemView.itemProperty.itemID;
+
+        if (itemView != null)
+        {
+            InstantiateItems(itemID, newQuantity, itemView.itemProperty);
+        }
+    }
+
+    private void InstantiateItems(int itemID, int newQuantity, ItemProperty itemProperty)
+    {
         if (inventoryController.IsItemAlreadyInstantiated(itemID))
         {
             inventoryController.SetQuantity(itemID, newQuantity);
 
             ItemView existingItem = inventoryController.GetInstantiatedItem(itemID);
+            inventoryController.SetItemWeight(itemID, existingItem.itemProperty.weight);
+
 
             if (existingItem != null)
             {
@@ -96,24 +119,26 @@ public class InventoryView : MonoBehaviour
         {
 
             GameObject newItem = Instantiate(itemPrefab, parentPanel);
-            ItemView itemDisplay = newItem.GetComponent<ItemView>();
+            ItemView itemView = newItem.GetComponent<ItemView>();
 
-            if (itemDisplay != null)
+            if (itemView != null)
             {
-                itemDisplay.itemProperty = inventoryController.GetItemDatabase()[index];
-                inventoryController.StoreItem(itemDisplay, inventoryFilterController);
+                itemView.itemProperty = itemProperty;
+                inventoryController.StoreItem(itemView, inventoryFilterController);
 
-                inventoryController.SetQuantity(itemDisplay.itemProperty.itemID, newQuantity);
+                inventoryController.SetQuantity(itemView.itemProperty.itemID, newQuantity);
+                inventoryController.SetItemWeight(itemID, itemView.itemProperty.weight);
 
-                inventoryController.StoreInstantiatedItem(itemDisplay.itemProperty.itemID, itemDisplay);
+                inventoryController.StoreInstantiatedItem(itemView.itemProperty.itemID, itemView);
 
-                itemDisplay.InventoryDisplayUI(inventoryController.GetItemQuantity(itemDisplay.itemProperty.itemID));
+                itemView.InventoryDisplayUI(inventoryController.GetItemQuantity(itemView.itemProperty.itemID));
             }
         }
-
         inventoryController.ApplyFilter(inventoryFilterController);
         EventSystem.current.SetSelectedGameObject(null);
     }
+
+   
 
     public void EnableSellSection()
     {
@@ -184,23 +209,33 @@ public class InventoryView : MonoBehaviour
     {
         int amount = int.Parse(sellingPriceText.text);
         int quantity = int.Parse(quantityText.text);
+
         int itemID = inventoryController.GetCurrentItem().itemProperty.itemID;
-        if (amount > 0)
+
+        if (amount > 0 && quantity >0)
         {
             SetSellSectionValues(true);
+            inventoryController.RemoveWeight(itemID, quantity);
+
             quantity = inventoryController.GetItemQuantity(itemID) - quantity;
 
             inventoryController.ResetQuantities(itemID);
             inventoryController.SetQuantity(itemID, quantity);
             inventoryController.GetCurrentItem().SetQuantityText(quantity);
+
             EventService.Instance.onItemSold.InvokeEvent();
-            EventService.Instance.onItemSoldWithParams.InvokeEvent(amount);
+            EventService.Instance.onItemSoldWithIntParams.InvokeEvent(amount);
+            EventService.Instance.onItemSoldWithFloatParams.InvokeEvent(inventoryController.GetTotalWeight());
+
+            if (quantity <= 0)
+            {
+                RemoveItem(itemID);
+            }
+
         }
 
-        if (quantity <= 0)
-        {
-            RemoveItem(itemID);
-        }
+
+      
     }
 
     private void RemoveItem(int itemID)
@@ -209,8 +244,10 @@ public class InventoryView : MonoBehaviour
 
         if (itemToRemove != null)
         {
-            Destroy(itemToRemove.gameObject);
             inventoryController.RemoveItem(itemID);
+            Destroy(itemToRemove.gameObject);
         }
+
+
     }
 }

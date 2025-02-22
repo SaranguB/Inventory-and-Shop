@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 
 public class InventoryController
@@ -23,7 +24,7 @@ public class InventoryController
         {
             int index = GetRandomIndex();
 
-            inventoryView.DisplayItem(index);
+            inventoryView.DisplayGatheredItem(index);
         }
     }
 
@@ -44,33 +45,42 @@ public class InventoryController
     private void SetAvailableRarity()
     {
         Dictionary<int, ItemView> instatiatedItems = inventoryModel.GetInstatiatedItems();
-        foreach (var entry in instatiatedItems)
+
+        if (instatiatedItems.Count() > 0)
         {
-            int itemID = entry.Key;
-            ItemView item = GetInstantiatedItem(itemID);
-
-            switch (item.itemProperty.rarity)
+            foreach (var entry in instatiatedItems)
             {
-                case ItemProperty.Rarity.VeryCommon:
-                    inventoryModel.SetRarityAvailable(ItemProperty.Rarity.VeryCommon, true);
-                    break;
+                int itemID = entry.Key;
+                ItemView item = GetInstantiatedItem(itemID);
 
-                case ItemProperty.Rarity.Common:
-                    inventoryModel.SetRarityAvailable(ItemProperty.Rarity.Common, true);
-                    break;
+                switch (item.itemProperty.rarity)
+                {
+                    case ItemProperty.Rarity.VeryCommon:
+                        inventoryModel.SetRarityAvailable(ItemProperty.Rarity.VeryCommon, true);
+                        break;
 
-                case ItemProperty.Rarity.Rare:
-                    inventoryModel.SetRarityAvailable(ItemProperty.Rarity.Rare, true);
-                    break;
+                    case ItemProperty.Rarity.Common:
+                        inventoryModel.SetRarityAvailable(ItemProperty.Rarity.Common, true);
+                        break;
 
-                case ItemProperty.Rarity.Legendary:
-                    inventoryModel.SetRarityAvailable(ItemProperty.Rarity.Legendary, true);
-                    break;
+                    case ItemProperty.Rarity.Rare:
+                        inventoryModel.SetRarityAvailable(ItemProperty.Rarity.Rare, true);
+                        break;
 
-                case ItemProperty.Rarity.Epic:
-                    inventoryModel.SetRarityAvailable(ItemProperty.Rarity.Epic, true);
-                    break;
+                    case ItemProperty.Rarity.Legendary:
+                        inventoryModel.SetRarityAvailable(ItemProperty.Rarity.Legendary, true);
+                        break;
+
+                    case ItemProperty.Rarity.Epic:
+                        inventoryModel.SetRarityAvailable(ItemProperty.Rarity.Epic, true);
+                        break;
+                }
+
             }
+        }
+        else
+        {
+            inventoryModel.SetRarityAvailable(ItemProperty.Rarity.VeryCommon, true);
 
         }
     }
@@ -171,13 +181,61 @@ public class InventoryController
         GameManager.Instance.uiController.SetItemDetailsPanel(true, GetCurrentItem());
     }
 
-    internal void SetPlayerCoin(int v, int amount)
+    public void RemoveWeight(int itemID, int quantity)
     {
-        throw new NotImplementedException();
+        inventoryModel.RemoveWeight(itemID, quantity);
     }
-
     public void RemoveItem(int itemID)
     {
+        
+        inventoryModel.SetRarityAvailable(GetCurrentItem().itemProperty.rarity, false);
         inventoryModel.RemoveInstatiatedItem(itemID);
+
+        if (inventoryModel.GetInstatiatedItems().Count <= 0)
+        {
+            GameManager.Instance.uiController.DisableItemDetailsPanel();
+        }
+    }
+
+    public void SetItemWeight(int itemID, float newWeight)
+    {
+        inventoryModel.SetItemWeight(itemID, newWeight);
+    }
+
+    public float GetItemWeight(int itemID)
+    {
+        return inventoryModel.GetItemWeight(itemID).Sum();
+    }
+
+    public void SetBagWeight(float weight)
+    {
+        GameManager.Instance.playerController.SetBagWeight(weight);
+    }
+
+    public float GetTotalWeight()
+    {
+        float totalWeight = 0;
+        foreach (var totalItemWeight in inventoryModel.GetInstatiatedItems())
+        {
+            int itemID = totalItemWeight.Key;
+            totalWeight += GetItemWeight(itemID);
+        }
+        return totalWeight;
+    }
+
+    public float GetPlayerBagWeight()
+    {
+        return GameManager.Instance.playerController.GetBagWeight();
+    }
+
+    public float GetPlayerBagCapacity()
+    {
+        return GameManager.Instance.playerController.GetBagCapacity();
+        ;
+    }
+
+    public void DisplayBroughtItems(ItemView itemView, int newQuantity)
+    {
+        inventoryView.DisplayBroughtItem(itemView, newQuantity);
     }
 }

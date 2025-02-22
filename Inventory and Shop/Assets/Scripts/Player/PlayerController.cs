@@ -23,7 +23,23 @@ public class PlayerController
 
     public void SetPlayerCoin(int coin)
     {
-        playerModel.numberOfCoins += coin;
+        playerModel.numberOfCoins = coin;
         playerView.SetCoinText();
+    }
+
+    public void SetBagWeight(float Weight)
+    {
+        playerModel.bagWeight = Weight;
+        playerView.SetBagWeightText();
+    }
+
+    public float GetBagCapacity()
+    {
+        return playerModel.bagCapacity;
+    }
+    public float GetBagWeight()
+    {
+        return playerModel.bagWeight;
+
     }
 }

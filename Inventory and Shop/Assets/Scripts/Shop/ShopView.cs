@@ -90,27 +90,25 @@ public class ShopView : MonoBehaviour
 
     public void EnableBuyingSection()
     {
-        if(isShopOn == true)
+        if (isShopOn == true)
         {
             buySection.alpha = 1;
             buySection.interactable = true;
             buySection.blocksRaycasts = true;
         }
-    } 
+    }
 
     public void SetCurrentSelected(bool isOn, ItemView itemView)
     {
         shopController.SetCurrentSelectedItem(itemView);
-        SetBuySectionValues(isOn, itemView);
+        SetBuySectionValues(isOn);
 
     }
 
-    private void SetBuySectionValues(bool isOn, ItemView itemView)
+    private void SetBuySectionValues(bool isOn)
     {
         if (isOn)
         {
-            int itemID = itemView.itemProperty.itemID;
-            int availableQuantity = shopController.GetItemQuantity(itemID);
 
             quantityText.text = 0.ToString();
             buyingPriceText.text = 0.ToString();
@@ -124,7 +122,7 @@ public class ShopView : MonoBehaviour
         int quantity = int.Parse(quantityText.text);
         int buyingPrice = int.Parse(buyingPriceText.text);
 
-       if (quantity <AvailableQuantity)
+        if (quantity < AvailableQuantity)
         {
             quantityText.text = (quantity + 1).ToString();
             buyingPriceText.text = (buyingPrice + shopController.GetCurrentItem().itemProperty.buyingPrice).ToString();
@@ -149,8 +147,8 @@ public class ShopView : MonoBehaviour
 
     public void DisableBuyingSection()
     {
-       
-        if(isShopOn == false)
+
+        if (isShopOn == false)
         {
             buySection.alpha = 0;
             buySection.interactable = false;
@@ -158,5 +156,24 @@ public class ShopView : MonoBehaviour
         }
     }
 
-  
+    public void Buy()
+    {
+        int amount = int.Parse(buyingPriceText.text);
+        int quantity = int.Parse(quantityText.text);
+
+        int itemID = shopController.GetCurrentItem().itemProperty.itemID;
+
+        if (shopController.GetPlayerCoin() >= amount && amount > 0)
+        {
+            SetBuySectionValues(true);
+            
+            amount = GameManager.Instance.playerController.GetPlayerCoinCount() - amount;
+            
+            GameManager.Instance.playerController.SetPlayerCoin(amount);
+            GameManager.Instance.inventoryController.DisplayBroughtItems(shopController.GetCurrentItem(), quantity);
+        }
+
+
+    }
+
 }

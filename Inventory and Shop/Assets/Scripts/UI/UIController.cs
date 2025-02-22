@@ -50,4 +50,9 @@ public class UIController
         }
         return 0;
     }
+
+    public void DisableItemDetailsPanel()
+    {
+        uiView.DisableItemDetailsPanel();
+    }
 }

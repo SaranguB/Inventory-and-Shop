@@ -82,6 +82,10 @@ public class UIView : MonoBehaviour
 
     }
 
+    public void DisableItemDetailsPanel()
+    {
+        itemDeatilsPanelCanvasGroup.alpha = 0;
+    }
     private string FormatEnumText(Enum enumValue)
     {
         return System.Text.RegularExpressions.Regex.Replace(enumValue.ToString(), "(\\B[A-Z])", " $1");

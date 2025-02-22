@@ -1,4 +1,5 @@
 
+using NUnit.Framework.Constraints;
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting.ReorderableList;
@@ -9,34 +10,69 @@ public class InventoryModel
 {
     public ItemView currentItem;
     private ItemDatabase itemDatabase;
-    private List<ItemProperty> Items;
-    public Dictionary<ItemProperty.Rarity, bool> isRarityAvailable = new Dictionary<ItemProperty.Rarity, bool>();
+
     public int numberOfResource { get; private set; }
 
+    private List<ItemProperty> Items;
+    public Dictionary<ItemProperty.Rarity, bool> isRarityAvailable;
+    public Dictionary<int, List<float>> itemWeight;
+    private Dictionary<int, ItemView> instantiatedItems;
     public Dictionary<int, List<int>> itemQuantities;
-    public int quantity;
 
-    private Dictionary<int, ItemView> instantiatedItems = new Dictionary<int, ItemView>();
 
     public InventoryModel(ItemDatabase itemDatabase)
     {
-        itemQuantities = new Dictionary<int, List<int>>();
+        Initialize(itemDatabase);
+
+    }
+
+    private void Initialize(ItemDatabase itemDatabase)
+    {
+
         this.itemDatabase = itemDatabase;
         Items = new List<ItemProperty>();
         numberOfResource = 5;
+
+        InitializeInstantiatedItems();
+        InitializeItemQuantities(itemDatabase);
+        InitializeItemWeight(itemDatabase);
+        InitializeRairityValues();
+    }
+
+    private void InitializeInstantiatedItems()
+    {
+        instantiatedItems = new Dictionary<int, ItemView>();
+    }
+
+    private void InitializeItemQuantities(ItemDatabase itemDatabase)
+    {
+        itemQuantities = new Dictionary<int, List<int>>();
 
         foreach (ItemProperty item in itemDatabase.items)
         {
             itemQuantities[item.itemID] = new List<int>();
         }
+    }
 
+    private void InitializeItemWeight(ItemDatabase itemDatabase)
+    {
+        itemWeight = new Dictionary<int, List<float>>();
+
+        foreach (ItemProperty item in itemDatabase.items)
+        {
+            itemWeight[item.itemID] = new List<float>();
+        }
+    }
+
+    private void InitializeRairityValues()
+    {
+        isRarityAvailable = new Dictionary<ItemProperty.Rarity, bool>();
 
         isRarityAvailable[ItemProperty.Rarity.VeryCommon] = true;
         isRarityAvailable[ItemProperty.Rarity.Common] = false;
         isRarityAvailable[ItemProperty.Rarity.Legendary] = false;
         isRarityAvailable[ItemProperty.Rarity.Epic] = false;
         isRarityAvailable[ItemProperty.Rarity.Rare] = false;
-
     }
 
     public List<ItemProperty> getItemDatabase()
@@ -61,7 +97,7 @@ public class InventoryModel
 
     public void ResetQuantities(int itemID)
     {
-        if(itemQuantities.ContainsKey(itemID))
+        if (itemQuantities.ContainsKey(itemID))
         {
             itemQuantities[itemID].Clear();
         }
@@ -108,6 +144,37 @@ public class InventoryModel
 
             instantiatedItems.Remove(itemID);
         }
-        
+
+    }
+
+    public void SetItemWeight(int itemID, float newWeight)
+    {
+        if (!itemWeight.ContainsKey(itemID))
+        {
+            itemWeight[itemID] = new List<float>();
+        }
+
+        itemWeight[itemID].Add(newWeight);
+
+    }
+
+    public List<float> GetItemWeight(int itemID)
+    {
+        if (itemWeight.ContainsKey(itemID))
+        {
+            return itemWeight[itemID];
+        }
+        return new List<float>();
+    }
+
+    public void RemoveWeight(int itemID, int quantity)
+    {
+        if (itemWeight.ContainsKey(itemID))
+        {
+            for (int i = 1; i <quantity; i++)
+            {
+                itemWeight.Remove(itemID);
+            }
+        }
     }
 }

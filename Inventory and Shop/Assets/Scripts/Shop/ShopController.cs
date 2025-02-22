@@ -74,5 +74,21 @@ public class ShopController
         return shopView.isShopOn;
     }
 
-   
+    public float GetPlayerBagWeight()
+    {
+        return GameManager.Instance.playerController.GetBagWeight();
+    }
+
+    public float GetPlayerBagCapacity()
+    {
+        return GameManager.Instance.playerController.GetBagCapacity();
+        
+    }
+
+    public int GetPlayerCoin()
+    {
+        return GameManager.Instance.playerController.GetPlayerCoinCount();
+    }
+
+
 }
