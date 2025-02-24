@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640bac49251657d47bb1207f83593d81, type: 3}
+  m_Name: Book of Ancient Lore
+  m_EditorClassIdentifier: 
+  itemID: 10
+  itemName: Book of Ancient Lore
+  item: 3
+  itemIcon: {fileID: 3915544672107269375, guid: 3028ac597e6fe084d8fe73fe9c641c84, type: 3}
+  ItemDescription: A tome filled with ancient knowledge and forgotten history, used
+    to unlock hidden lore or side quests in the game.
+  buyingPrice: 250
+  sellingPrice: 180
+  weight: 0.5
+  rarity: 0
+  quantity: 4

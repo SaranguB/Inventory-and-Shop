@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640bac49251657d47bb1207f83593d81, type: 3}
+  m_Name: Ancient Map
+  m_EditorClassIdentifier: 
+  itemID: 9
+  itemName: Ancient Map
+  item: 3
+  itemIcon: {fileID: -1311454706999046921, guid: 665587e3be783de4396557860669fad0, type: 3}
+  ItemDescription: A fragment of an ancient map that reveals hidden locations and
+    secrets on your journey, when combined with other fragments.
+  buyingPrice: 150
+  sellingPrice: 100
+  weight: 0.1
+  rarity: 2
+  quantity: 5

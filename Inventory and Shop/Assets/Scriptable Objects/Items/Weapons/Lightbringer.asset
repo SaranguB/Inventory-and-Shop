@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640bac49251657d47bb1207f83593d81, type: 3}
+  m_Name: Lightbringer
+  m_EditorClassIdentifier: 
+  itemID: 18
+  itemName: Lightbringer
+  item: 1
+  itemIcon: {fileID: -1125846772116236624, guid: 6fae1746d5d84c840aa5cb68355e2655, type: 3}
+  ItemDescription: A radiant sword that purifies darkness and heals its wielder with
+    every strike, banishing undead and demons.
+  buyingPrice: 1200
+  sellingPrice: 900
+  weight: 4
+  rarity: 0
+  quantity: 1
