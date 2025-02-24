@@ -81,6 +81,7 @@ public class InventoryView : MonoBehaviour
         }
         else
         {
+            inventoryController.PlayPopSound();
             weightExceededPopup.alpha = 1;
             weightExceededPopup.blocksRaycasts = true;
             weightExceededPopup.interactable = true;
@@ -147,7 +148,7 @@ public class InventoryView : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-   
+
 
     public void EnableSellSection()
     {
@@ -184,7 +185,7 @@ public class InventoryView : MonoBehaviour
         }
     }
 
-    public void AddQuantity()
+    public void AddSellSectionValues()
     {
         int itemID = inventoryController.GetCurrentItem().itemProperty.itemID;
         int AvailableQuantity = inventoryController.GetItemQuantity(itemID);
@@ -193,13 +194,18 @@ public class InventoryView : MonoBehaviour
 
         if (quantity < AvailableQuantity)
         {
+            inventoryController.PlayQuantityChangedSound();
             quantityText.text = (quantity + 1).ToString();
             sellingPriceText.text = (sellingPrice + inventoryController.GetCurrentItem().itemProperty.sellingPrice).ToString();
 
         }
+        else
+        {
+            inventoryController.PlayNonClickableSound();
+        }
     }
 
-    public void ReduceQuantity()
+    public void ReduceSellSectionValues()
     {
         int itemID = inventoryController.GetCurrentItem().itemProperty.itemID;
         int AvailableQuantity = inventoryController.GetItemQuantity(itemID);
@@ -208,8 +214,14 @@ public class InventoryView : MonoBehaviour
 
         if (quantity > 0)
         {
+            inventoryController.PlayQuantityChangedSound();
             quantityText.text = (quantity - 1).ToString();
             sellingPriceText.text = (sellingPrice - inventoryController.GetCurrentItem().itemProperty.sellingPrice).ToString();
+
+        }
+        else
+        {
+            inventoryController.PlayNonClickableSound();
 
         }
     }
@@ -221,7 +233,7 @@ public class InventoryView : MonoBehaviour
 
         int itemID = inventoryController.GetCurrentItem().itemProperty.itemID;
 
-        if (amount > 0 && quantity >0)
+        if (amount > 0 && quantity > 0)
         {
             SetSellSectionValues(true);
             inventoryController.RemoveWeight(itemID, quantity);
@@ -231,6 +243,7 @@ public class InventoryView : MonoBehaviour
             inventoryController.ResetQuantities(itemID);
             inventoryController.SetQuantity(itemID, quantity);
             inventoryController.GetCurrentItem().SetQuantityText(quantity);
+            inventoryController.PlaySoldSound();
 
             EventService.Instance.onItemChanged.InvokeEvent();
             EventService.Instance.onItemSoldWithIntParams.InvokeEvent(amount);
@@ -242,9 +255,13 @@ public class InventoryView : MonoBehaviour
             }
 
         }
+        else
+        {
+            inventoryController.PlayNonClickableSound();
+        }
 
 
-      
+
     }
 
     private void RemoveItem(int itemID)

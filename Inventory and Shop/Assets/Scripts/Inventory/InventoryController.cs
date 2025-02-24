@@ -20,12 +20,18 @@ public class InventoryController
 
     public void GatherResource()
     {
+        PlayGatherResourceSound();
         for (int i = 0; i < inventoryModel.numberOfResource; i++)
         {
             int index = GetRandomIndex();
 
             inventoryView.DisplayGatheredItem(index);
         }
+    }
+
+    private void PlayGatherResourceSound()
+    {
+        SoundManager.Instance.PlaySound(Sounds.GatherResource);
     }
 
     private int GetRandomIndex()
@@ -187,7 +193,7 @@ public class InventoryController
     }
     public void RemoveItem(int itemID)
     {
-        
+
         inventoryModel.SetRarityAvailable(GetCurrentItem().itemProperty.rarity, false);
         inventoryModel.RemoveInstatiatedItem(itemID);
 
@@ -242,5 +248,27 @@ public class InventoryController
     public void DisplayBroughtItems(ItemView itemView, int newQuantity)
     {
         inventoryView.DisplayBroughtItem(itemView, newQuantity);
+    }
+
+
+    public void PlaySoldSound()
+    {
+        SoundManager.Instance.PlaySound(Sounds.MoneySound);
+
+    }
+
+    public void PlayQuantityChangedSound()
+    {
+        SoundManager.Instance.PlaySound(Sounds.QuantityChanged);
+    }
+
+    public void PlayPopSound()
+    {
+        SoundManager.Instance.PlaySound(Sounds.ErrorSound);
+    }
+
+    public void PlayNonClickableSound()
+    {
+        SoundManager.Instance.PlaySound(Sounds.NonClickable);
     }
 }

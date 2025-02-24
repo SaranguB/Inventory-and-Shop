@@ -35,6 +35,7 @@ public class FilterController : MonoBehaviour
 
     void SetFilterState(Toggle changedToggle, bool isToggleOn)
     {
+        PlayFilterButtonSound();
 
         if (isToggleOn == true && toggleFilterMap.ContainsKey(changedToggle))
         {
@@ -46,6 +47,7 @@ public class FilterController : MonoBehaviour
 
     public void ShowAll(bool isOn)
     {
+        PlayFilterButtonSound();
         if (isOn)
         {
             showAll = true;
@@ -62,6 +64,11 @@ public class FilterController : MonoBehaviour
                 item.EnabaleItem();
         }
 
+    }
+
+    private static void PlayFilterButtonSound()
+    {
+        SoundManager.Instance.PlaySound(Sounds.FilterButtonSound);
     }
 
     public void ApplyFilter()

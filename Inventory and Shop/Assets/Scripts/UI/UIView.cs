@@ -91,15 +91,6 @@ public class UIView : MonoBehaviour
         return System.Text.RegularExpressions.Regex.Replace(enumValue.ToString(), "(\\B[A-Z])", " $1");
     }
 
-    public void print()
-    {
-        Debug.Log("Clicked");
-    }
-
-    public enum FilterState
-    {
-
-    }
 
 
 }

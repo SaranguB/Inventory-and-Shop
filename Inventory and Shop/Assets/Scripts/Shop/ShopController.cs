@@ -92,8 +92,14 @@ public class ShopController
     }
 
     public void DisplayBroughtItems(ItemView itemView, int quantity)
-    {
+    { 
         GameManager.Instance.inventoryController.DisplayBroughtItems(GetCurrentItem(), quantity);
+        PlayBroughtSound();
+    }
+
+    public void PlayBroughtSound()
+    {
+        SoundManager.Instance.PlaySound(Sounds.MoneySound);
     }
 
     public void SetItemWeight(int itemID, float newWeight)
@@ -106,4 +112,16 @@ public class ShopController
         return shopModel.GetItemWeight(itemID);
     }
 
+    public void PlayQuantityChangedSound()
+    {
+        SoundManager.Instance.PlaySound(Sounds.QuantityChanged);
+    }
+    public void PlayPopUpSound()
+    {
+        SoundManager.Instance.PlaySound(Sounds.ErrorSound);
+    }
+    public void PlayNonClickableSound()
+    {
+        SoundManager.Instance.PlaySound(Sounds.NonClickable);
+    }
 }

@@ -126,9 +126,15 @@ public class ShopView : MonoBehaviour
 
         if (quantity < AvailableQuantity)
         {
+            shopController.PlayQuantityChangedSound();
             quantityText.text = (quantity + 1).ToString();
             buyingPriceText.text = (buyingPrice + shopController.GetCurrentItem().itemProperty.buyingPrice).ToString();
         }
+        else
+        {
+            shopController.PlayNonClickableSound();
+        }
+
     }
 
     public void ReduceBuySectionValues()
@@ -140,8 +146,13 @@ public class ShopView : MonoBehaviour
 
         if (quantity > 0)
         {
+            shopController.PlayQuantityChangedSound();
             quantityText.text = (quantity - 1).ToString();
             buyingPriceText.text = (buyingPrice - shopController.GetCurrentItem().itemProperty.buyingPrice).ToString();
+        }
+        else
+        {
+            shopController.PlayNonClickableSound();
         }
     }
 
@@ -185,6 +196,7 @@ public class ShopView : MonoBehaviour
                 }
                 else
                 {
+                    shopController.PlayPopUpSound();
                     weightExceededPopUp.alpha = 1;
                     weightExceededPopUp.blocksRaycasts = true;
                     weightExceededPopUp.interactable = true;
@@ -192,10 +204,15 @@ public class ShopView : MonoBehaviour
             }
             else
             {
+                shopController.PlayPopUpSound();
                 notEnoughMoneyPopup.alpha = 1;
                 notEnoughMoneyPopup.blocksRaycasts = true;
                 notEnoughMoneyPopup.interactable = true;
             }
+        }
+        else
+        {
+            shopController.PlayNonClickableSound();
         }
 
 
@@ -206,7 +223,7 @@ public class ShopView : MonoBehaviour
         notEnoughMoneyPopup.alpha = 0;
         notEnoughMoneyPopup.blocksRaycasts = false;
         notEnoughMoneyPopup.interactable = false;
-    } 
+    }
     public void DisableWeightExceededPopUp()
     {
         weightExceededPopUp.alpha = 0;

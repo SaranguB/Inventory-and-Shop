@@ -51,7 +51,10 @@ public class ItemView : MonoBehaviour
     public void SetItemDetailPanel(bool isOn)
     {
         if (isOn)
+        {
+            SoundManager.Instance.PlaySound(Sounds.ItemSelected);
             EventService.Instance.OnItemSelectedEventWithParams.InvokeEvent(isOn, this);
+        }
     }
 
     public void disableItem()
