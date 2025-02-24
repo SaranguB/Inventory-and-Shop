@@ -22,4 +22,4 @@ MonoBehaviour:
   sellingPrice: 200
   weight: 5
   rarity: 1
-  quantity: 0
+  quantity: 5

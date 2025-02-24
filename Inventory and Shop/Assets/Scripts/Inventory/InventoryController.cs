@@ -1,9 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-using static UnityEditor.Progress;
-
 
 public class InventoryController
 {
@@ -242,7 +238,7 @@ public class InventoryController
     public float GetPlayerBagCapacity()
     {
         return GameManager.Instance.playerController.GetBagCapacity();
-        ;
+        
     }
 
     public void DisplayBroughtItems(ItemView itemView, int newQuantity)

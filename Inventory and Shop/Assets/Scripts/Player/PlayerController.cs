@@ -17,7 +17,6 @@ public class PlayerController
 
     public int GetPlayerCoinCount()
     {
-        //Debug.Log(playerModel.numberOfCoins);
         return playerModel.numberOfCoins;
     }
 

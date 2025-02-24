@@ -36,10 +36,6 @@ public class ShopController
 
     public void StoreItem(ItemView itemDisplay, FilterController shopFilterController)
     {
-        /*if(shopFilterController!=null)
-        {
-            Debug.Log("null");
-        }*/
         shopFilterController.AddItemDisplay(itemDisplay);
     }
 
@@ -50,7 +46,6 @@ public class ShopController
 
     public void SetCurrentSelectedItem(ItemView itemView)
     {
-        
         shopModel.currentItem = itemView;
     }
 

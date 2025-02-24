@@ -9,7 +9,6 @@ public class PlayerView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playerBagWeightText;
     [SerializeField] private TextMeshProUGUI playerBagCapacityText;
 
-
     private void OnDisable()
     {
         EventService.Instance.onItemSoldWithFloatParams.RemoveListener(playerController.SetBagWeight);
@@ -29,9 +28,7 @@ public class PlayerView : MonoBehaviour
 
         EventService.Instance.onItemSoldWithFloatParams.AddListener(playerController.SetBagWeight);
 
-
     }
-
     public void SetCoinText()
     {
         playerCoinCountText.text = playerController.GetPlayerCoinCount().ToString();

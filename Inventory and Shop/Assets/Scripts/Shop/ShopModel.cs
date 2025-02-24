@@ -12,8 +12,6 @@ public class ShopModel
     public ShopModel(ItemDatabase itemDatabase)
     {
         Initilize(itemDatabase);
-
-
     }
 
     private void Initilize(ItemDatabase itemDatabase)
@@ -57,7 +55,7 @@ public class ShopModel
         if (itemQuantities.ContainsKey(itemID))
         {
             itemQuantities[itemID] = quantity;
-            //Debug.Log(itemQuantities[itemID]);
+            
         }
     }
 

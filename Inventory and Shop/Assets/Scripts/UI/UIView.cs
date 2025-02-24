@@ -1,6 +1,5 @@
 using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -27,11 +26,6 @@ public class UIView : MonoBehaviour
 
 
     private UIController uiController;
-
-    private void OnEnable()
-    {
-
-    }
 
     private void OnDisable()
     {

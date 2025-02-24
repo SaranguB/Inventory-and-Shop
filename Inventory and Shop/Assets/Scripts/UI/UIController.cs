@@ -1,7 +1,3 @@
-using System;
-using UnityEngine;
-using UnityEngine.EventSystems;
-
 public class UIController
 {
     private UIView uiView;

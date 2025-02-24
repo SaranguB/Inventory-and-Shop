@@ -156,8 +156,6 @@ public class ShopView : MonoBehaviour
         }
     }
 
-
-
     public void DisableBuyingSection()
     {
 
@@ -168,7 +166,6 @@ public class ShopView : MonoBehaviour
             buySection.blocksRaycasts = false;
         }
     }
-
     public void Buy()
     {
         int amount = int.Parse(buyingPriceText.text);
@@ -217,7 +214,6 @@ public class ShopView : MonoBehaviour
 
 
     }
-
     public void DisableNotEnoughMoneyPopUp()
     {
         notEnoughMoneyPopup.alpha = 0;

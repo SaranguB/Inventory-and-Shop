@@ -8120,6 +8120,18 @@ MonoBehaviour:
   - sound: 3
     soundClip: {fileID: 8300000, guid: 8fe2927d21469aa4f903eabd99291877, type: 3}
     volume: 100
+  - sound: 5
+    soundClip: {fileID: 8300000, guid: 4436780a3e04fd744a99154b2130a390, type: 3}
+    volume: 100
+  - sound: 6
+    soundClip: {fileID: 8300000, guid: cb231dc76449c8e46989b1203a51c32d, type: 3}
+    volume: 100
+  - sound: 6
+    soundClip: {fileID: 8300000, guid: cb231dc76449c8e46989b1203a51c32d, type: 3}
+    volume: 100
+  - sound: 7
+    soundClip: {fileID: 8300000, guid: f10e7ff812627164fa39911459400577, type: 3}
+    volume: 100
 --- !u!1 &1247589811
 GameObject:
   m_ObjectHideFlags: 0
