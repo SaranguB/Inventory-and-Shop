@@ -12,7 +12,7 @@ public class PlayerView : MonoBehaviour
 
     private void OnDisable()
     {
-        EventService.Instance.onItemChangedWithFloatParams.RemoveListener(playerController.SetBagWeight);
+        EventService.Instance.onItemSoldWithFloatParams.RemoveListener(playerController.SetBagWeight);
         EventService.Instance.onItemBroughtWithIntParams.RemoveListener(playerController.DecreasePlayerCoin);
 
         EventService.Instance.onItemSoldWithIntParams.RemoveListener(playerController.IncreasePlayerCoin);
@@ -27,7 +27,7 @@ public class PlayerView : MonoBehaviour
         EventService.Instance.onItemBroughtWithIntParams.AddListener(playerController.DecreasePlayerCoin);
         EventService.Instance.onItemSoldWithIntParams.AddListener(playerController.IncreasePlayerCoin);
 
-        EventService.Instance.onItemChangedWithFloatParams.AddListener(playerController.SetBagWeight);
+        EventService.Instance.onItemSoldWithFloatParams.AddListener(playerController.SetBagWeight);
 
 
     }
@@ -40,6 +40,20 @@ public class PlayerView : MonoBehaviour
     public void SetBagWeightText()
     {
         playerBagWeightText.text = playerController.GetBagWeight().ToString("0.#");
+        BagOverWeight();
+    }
+
+    private void BagOverWeight()
+    {
+        if (playerController.GetBagWeight() > playerController.GetBagCapacity())
+        {
+            playerBagWeightText.color = Color.red;
+        }
+        else
+        {
+            playerBagWeightText.color = Color.white;
+
+        }
     }
 
     public void SetPlayerBagCapacityText()

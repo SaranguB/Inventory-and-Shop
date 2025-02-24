@@ -12,6 +12,7 @@ public class InventoryView : MonoBehaviour
     [SerializeField] private GameObject itemPrefab;
 
     [SerializeField] private FilterController inventoryFilterController;
+    [SerializeField] private CanvasGroup weightExceededPopup;
 
     [Header("Sell Section")]
     [SerializeField] private CanvasGroup sellSection;
@@ -74,8 +75,15 @@ public class InventoryView : MonoBehaviour
     {
         if (inventoryController.GetPlayerBagWeight() < inventoryController.GetPlayerBagCapacity())
         {
+            inventoryController.DisablePanel();
             inventoryController.GatherResource();
             inventoryController.SetBagWeight(inventoryController.GetTotalWeight());
+        }
+        else
+        {
+            weightExceededPopup.alpha = 1;
+            weightExceededPopup.blocksRaycasts = true;
+            weightExceededPopup.interactable = true;
         }
     }
 
@@ -226,7 +234,7 @@ public class InventoryView : MonoBehaviour
 
             EventService.Instance.onItemChanged.InvokeEvent();
             EventService.Instance.onItemSoldWithIntParams.InvokeEvent(amount);
-            EventService.Instance.onItemChangedWithFloatParams.InvokeEvent(inventoryController.GetTotalWeight());
+            EventService.Instance.onItemSoldWithFloatParams.InvokeEvent(inventoryController.GetTotalWeight());
 
             if (quantity <= 0)
             {
@@ -249,6 +257,12 @@ public class InventoryView : MonoBehaviour
             Destroy(itemToRemove.gameObject);
         }
 
+    }
 
+    public void DisableweightExceededPopup()
+    {
+        weightExceededPopup.alpha = 0;
+        weightExceededPopup.blocksRaycasts = false;
+        weightExceededPopup.interactable = false;
     }
 }

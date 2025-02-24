@@ -193,8 +193,13 @@ public class InventoryController
 
         if (inventoryModel.GetInstatiatedItems().Count <= 0)
         {
-            GameManager.Instance.uiController.DisableItemDetailsPanel();
+            DisablePanel();
         }
+    }
+
+    public void DisablePanel()
+    {
+        GameManager.Instance.uiController.DisableItemDetailsPanel();
     }
 
     public void SetItemWeight(int itemID, float newWeight)

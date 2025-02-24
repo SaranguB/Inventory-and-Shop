@@ -17,6 +17,8 @@ public class ShopView : MonoBehaviour
     [SerializeField] private CanvasGroup buySection;
     [SerializeField] private TextMeshProUGUI quantityText;
     [SerializeField] private TextMeshProUGUI buyingPriceText;
+    [SerializeField] private CanvasGroup notEnoughMoneyPopup;
+    [SerializeField] private CanvasGroup weightExceededPopUp;
 
     public bool isShopOn = true;
 
@@ -159,26 +161,57 @@ public class ShopView : MonoBehaviour
     public void Buy()
     {
         int amount = int.Parse(buyingPriceText.text);
-        int availableQuantity = int.Parse(quantityText.text);
+        int seletcedQuantity = int.Parse(quantityText.text);
 
         int itemID = shopController.GetCurrentItem().itemProperty.itemID;
 
-        if (shopController.GetPlayerCoin() >= amount && amount > 0)
+        if (amount > 0 && seletcedQuantity > 0)
         {
-            SetBuySectionValues(true);
-            int playerCoin = GameManager.Instance.playerController.GetPlayerCoinCount();
-            int newAmount = playerCoin - amount;
-            int newQuantity = shopController.GetItemQuantity(itemID) - availableQuantity;
+            if (shopController.GetPlayerCoin() >= amount)
+            {
+                if (shopController.GetPlayerBagWeight() < shopController.GetPlayerBagCapacity())
+                {
+                    SetBuySectionValues(true);
+                    int playerCoin = shopController.GetPlayerCoin();
+                    int newAmount = playerCoin - amount;
+                    int newQuantity = shopController.GetItemQuantity(itemID) - seletcedQuantity;
 
-            shopController.DisplayBroughtItems(shopController.GetCurrentItem(), availableQuantity);
-            shopController.SetItemQuantities(itemID, newQuantity);
-            shopController.GetCurrentItem().SetQuantityText(newQuantity);
+                    shopController.DisplayBroughtItems(shopController.GetCurrentItem(), seletcedQuantity);
+                    shopController.SetItemQuantities(itemID, newQuantity);
+                    shopController.GetCurrentItem().SetQuantityText(newQuantity);
 
-            EventService.Instance.onItemChanged.InvokeEvent();
-            EventService.Instance.onItemBroughtWithIntParams.InvokeEvent(newAmount);
+                    EventService.Instance.onItemChanged.InvokeEvent();
+                    EventService.Instance.onItemBroughtWithIntParams.InvokeEvent(newAmount);
+                }
+                else
+                {
+                    weightExceededPopUp.alpha = 1;
+                    weightExceededPopUp.blocksRaycasts = true;
+                    weightExceededPopUp.interactable = true;
+                }
+            }
+            else
+            {
+                notEnoughMoneyPopup.alpha = 1;
+                notEnoughMoneyPopup.blocksRaycasts = true;
+                notEnoughMoneyPopup.interactable = true;
+            }
         }
 
 
+    }
+
+    public void DisableNotEnoughMoneyPopUp()
+    {
+        notEnoughMoneyPopup.alpha = 0;
+        notEnoughMoneyPopup.blocksRaycasts = false;
+        notEnoughMoneyPopup.interactable = false;
+    } 
+    public void DisableWeightExceededPopUp()
+    {
+        weightExceededPopUp.alpha = 0;
+        weightExceededPopUp.blocksRaycasts = false;
+        weightExceededPopUp.interactable = false;
     }
 
 }
