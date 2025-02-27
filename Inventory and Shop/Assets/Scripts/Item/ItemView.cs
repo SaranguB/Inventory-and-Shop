@@ -12,9 +12,7 @@ public class ItemView : MonoBehaviour
 
     public ItemProperty.ItemTypes itemType { get; private set; }
     public ItemProperty.Rarity rarity { get; private set; }
-
     public int quantityValue = 0;
-
 
     public void ShopDisplayUI()
     {

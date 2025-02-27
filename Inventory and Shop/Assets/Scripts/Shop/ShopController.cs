@@ -1,14 +1,12 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ShopController
 {
-
     private ShopView shopView;
     private ShopModel shopModel;
     FilterController filter;
+
     public ShopController(ShopView shopView, ShopModel shopModel)
     {
         this.shopModel = shopModel;
@@ -22,10 +20,10 @@ public class ShopController
     {
         shopView.EnableShopVisibility();
     }
+
     public void DisableShopVisibility()
     {
         shopView.DisableShopVisibility();
-    
     }
 
     public void LoadShopItems()
@@ -78,7 +76,6 @@ public class ShopController
     public float GetPlayerBagCapacity()
     {
         return GameManager.Instance.playerController.GetBagCapacity();
-        
     }
 
     public int GetPlayerCoin()

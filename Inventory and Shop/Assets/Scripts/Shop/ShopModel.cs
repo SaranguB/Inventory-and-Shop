@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class ShopModel
 {
@@ -9,6 +8,7 @@ public class ShopModel
     private List<ItemProperty> items;
     public Dictionary<int, int> itemQuantities;
     public Dictionary<int, float> itemWeight;
+
     public ShopModel(ItemDatabase itemDatabase)
     {
         Initilize(itemDatabase);
@@ -41,6 +41,7 @@ public class ShopModel
         }
         return items;
     }
+
     private void InitializeItemWeight(ItemDatabase itemDatabase)
     {
         itemWeight = new Dictionary<int, float>();
@@ -50,12 +51,12 @@ public class ShopModel
             itemWeight[item.itemID] = 0;
         }
     }
+
     public void SetItemQuantities(int itemID, int quantity)
     {
         if (itemQuantities.ContainsKey(itemID))
         {
             itemQuantities[itemID] = quantity;
-            
         }
     }
 
@@ -84,5 +85,4 @@ public class ShopModel
         }
         return 0;
     }
-
 }

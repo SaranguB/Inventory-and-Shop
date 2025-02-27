@@ -5,7 +5,6 @@ public class UIController
     public UIController(UIView uiView)
     {
         this.uiView = uiView;
-
         uiView.SetUIController(this);
     }
 

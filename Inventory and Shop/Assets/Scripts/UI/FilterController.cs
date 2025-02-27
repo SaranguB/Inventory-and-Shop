@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +6,6 @@ public class FilterController : MonoBehaviour
 {
     [SerializeField] private List<Toggle> filterToggle;
     private ItemProperty.ItemTypes currentFilterState;
-
     private Dictionary<Toggle, ItemProperty.ItemTypes> toggleFilterMap;
     private List<ItemView> itemDisplay = new List<ItemView>();
     bool showAll = true;
@@ -44,7 +42,6 @@ public class FilterController : MonoBehaviour
             currentFilterState = toggleFilterMap[changedToggle];
             ApplyFilter();
         }
-
     }
 
     public void ShowAll(bool isOn)
@@ -65,7 +62,6 @@ public class FilterController : MonoBehaviour
             if (item != null)
                 item.EnabaleItem();
         }
-
     }
 
     private static void PlayFilterButtonSound()

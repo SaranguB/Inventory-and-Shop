@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -15,19 +14,18 @@ public class PlayerView : MonoBehaviour
         EventService.Instance.onItemBroughtWithIntParams.RemoveListener(playerController.DecreasePlayerCoin);
 
         EventService.Instance.onItemSoldWithIntParams.RemoveListener(playerController.IncreasePlayerCoin);
-
     }
     public void SetPlayerController(PlayerController playerController)
     {
         this.playerController = playerController;
+
         SetCoinText();
         SetPlayerBagCapacityText();
         SetBagWeightText();
+
         EventService.Instance.onItemBroughtWithIntParams.AddListener(playerController.DecreasePlayerCoin);
         EventService.Instance.onItemSoldWithIntParams.AddListener(playerController.IncreasePlayerCoin);
-
         EventService.Instance.onItemSoldWithFloatParams.AddListener(playerController.SetBagWeight);
-
     }
     public void SetCoinText()
     {
@@ -49,7 +47,6 @@ public class PlayerView : MonoBehaviour
         else
         {
             playerBagWeightText.color = Color.white;
-
         }
     }
 

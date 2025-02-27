@@ -1,19 +1,14 @@
 using System;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class SoundManager : MonoBehaviour
 {
     private static SoundManager instance;
-
     public static SoundManager Instance { get { return instance; } }
-
     [SerializeField]
     private AudioSource soundEffect;
-
     [SerializeField]
     private AudioSource soundMusic;
-
     [SerializeField]
     private SoundType[] sounds;
 
@@ -62,10 +57,7 @@ public class SoundManager : MonoBehaviour
         SoundType type = Array.Find(sounds, i => i.sound == sound);
 
         return type;
-
     }
-
-
 }
 
 [Serializable]

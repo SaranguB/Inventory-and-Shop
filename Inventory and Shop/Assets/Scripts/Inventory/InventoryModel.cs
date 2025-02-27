@@ -1,7 +1,4 @@
-
-
 using System.Collections.Generic;
-
 
 public class InventoryModel
 {
@@ -16,16 +13,13 @@ public class InventoryModel
     private Dictionary<int, ItemView> instantiatedItems;
     public Dictionary<int, List<int>> itemQuantities;
 
-
     public InventoryModel(ItemDatabase itemDatabase)
     {
         Initialize(itemDatabase);
-
     }
 
     private void Initialize(ItemDatabase itemDatabase)
     {
-
         this.itemDatabase = itemDatabase;
         Items = new List<ItemProperty>();
         numberOfResource = 5;
@@ -105,7 +99,6 @@ public class InventoryModel
         if (itemQuantities.ContainsKey(itemID))
         {
             return itemQuantities[itemID];
-
         }
         return new List<int>();
     }
@@ -113,7 +106,6 @@ public class InventoryModel
     public void StoreInstantiatedItems(int itemID, ItemView itemView)
     {
         instantiatedItems[itemID] = itemView;
-
     }
 
     public Dictionary<int, ItemView> GetInstatiatedItems()
@@ -138,7 +130,6 @@ public class InventoryModel
     {
         if (instantiatedItems.ContainsKey(itemID))
         {
-
             instantiatedItems.Remove(itemID);
         }
 
@@ -150,9 +141,7 @@ public class InventoryModel
         {
             itemWeight[itemID] = new List<float>();
         }
-
         itemWeight[itemID].Add(newWeight);
-
     }
 
     public List<float> GetItemWeight(int itemID)

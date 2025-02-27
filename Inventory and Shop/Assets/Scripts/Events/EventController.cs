@@ -1,16 +1,11 @@
 using System;
-
 public class EventController
 {
     public event Action baseEvent;
-
     public void InvokeEvent() => baseEvent?.Invoke();
-
     public void AddListener(Action listener) => baseEvent += listener;
-
     public void RemoveListener(Action listener) => baseEvent -= listener;
 }
-
 public class EventController<T1, T2>
 {
     public event Action<T1, T2> baseEvent;

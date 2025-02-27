@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 public class PlayerController
 {
     private PlayerView playerView;
@@ -12,7 +9,6 @@ public class PlayerController
         this.playerModel = playerModel;
 
         this.playerView.SetPlayerController(this);
-        this.playerModel.SetPlayerController(this);
     }
 
     public int GetPlayerCoinCount()
@@ -36,16 +32,15 @@ public class PlayerController
     {
         return playerModel.bagCapacity;
     }
+
     public float GetBagWeight()
     {
         return playerModel.bagWeight;
-
     }
 
     public void DecreasePlayerCoin(int coin)
     {
         playerModel.numberOfCoins -= coin;
         playerView.SetCoinText();
-
     }
 }

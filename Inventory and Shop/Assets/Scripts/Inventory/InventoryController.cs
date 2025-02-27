@@ -5,12 +5,11 @@ public class InventoryController
 {
     private InventoryView inventoryView;
     private InventoryModel inventoryModel;
-
     public InventoryController(InventoryView inventoryView, InventoryModel inventoryModel)
     {
         this.inventoryView = inventoryView;
-
         this.inventoryView.SetInventoryController(this);
+
         this.inventoryModel = inventoryModel;
     }
 
@@ -20,7 +19,6 @@ public class InventoryController
         for (int i = 0; i < inventoryModel.numberOfResource; i++)
         {
             int index = GetRandomIndex();
-
             inventoryView.DisplayGatheredItem(index);
         }
     }
@@ -83,7 +81,6 @@ public class InventoryController
         else
         {
             inventoryModel.SetRarityAvailable(ItemProperty.Rarity.VeryCommon, true);
-
         }
     }
 
@@ -94,9 +91,10 @@ public class InventoryController
         {
             return true;
         }
-        return false;
 
+        return false;
     }
+
     public void EnableInventoryVisibility()
     {
         inventoryView.EnableInventoryVisibility();
@@ -119,7 +117,6 @@ public class InventoryController
 
     public void StoreItem(ItemView itemDisplay, FilterController inventoryFilterController)
     {
-
         inventoryFilterController.AddItemDisplay(itemDisplay);
     }
 
@@ -131,7 +128,6 @@ public class InventoryController
 
     public void SetQuantity(int itemId, int quantity)
     {
-        //Debug.Log(quantity);
         inventoryModel.SetItemQuantities(itemId, quantity);
     }
 
@@ -142,9 +138,7 @@ public class InventoryController
 
     public bool IsItemAlreadyInstantiated(int itemID)
     {
-
         return inventoryModel.GetInstatiatedItems().ContainsKey(itemID);
-
     }
 
     public ItemView GetInstantiatedItem(int itemID)
@@ -154,7 +148,6 @@ public class InventoryController
 
     public void StoreInstantiatedItem(int itemID, ItemView itemView)
     {
-
         inventoryModel.StoreInstantiatedItems(itemID, itemView);
     }
 
@@ -189,7 +182,6 @@ public class InventoryController
     }
     public void RemoveItem(int itemID)
     {
-
         inventoryModel.SetRarityAvailable(GetCurrentItem().itemProperty.rarity, false);
         inventoryModel.RemoveInstatiatedItem(itemID);
 
@@ -238,7 +230,6 @@ public class InventoryController
     public float GetPlayerBagCapacity()
     {
         return GameManager.Instance.playerController.GetBagCapacity();
-        
     }
 
     public void DisplayBroughtItems(ItemView itemView, int newQuantity)
@@ -250,7 +241,6 @@ public class InventoryController
     public void PlaySoldSound()
     {
         SoundManager.Instance.PlaySound(Sounds.MoneySound);
-
     }
 
     public void PlayQuantityChangedSound()

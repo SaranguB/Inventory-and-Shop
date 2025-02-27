@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ShopView : MonoBehaviour
 {
-
     private ShopController shopController;
     private CanvasGroup shopCanvas;
     [SerializeField] private FilterController shopFilterController;
@@ -31,7 +30,6 @@ public class ShopView : MonoBehaviour
 
         EventService.Instance.OnItemSelectedEvent.AddListener(EnableBuyingSection);
         EventService.Instance.OnItemSelectedEventWithParams.AddListener(SetCurrentSelected);
-
     }
 
     private void OnDisable()
@@ -43,15 +41,12 @@ public class ShopView : MonoBehaviour
 
         EventService.Instance.OnItemSelectedEvent.RemoveListener(EnableBuyingSection);
         EventService.Instance.OnItemSelectedEventWithParams.RemoveListener(SetCurrentSelected);
-
-
     }
 
     public void SetShopController(ShopController shopController)
     {
         this.shopController = shopController;
         shopCanvas = this.GetComponent<CanvasGroup>();
-
     }
 
     public void EnableShopVisibility()
@@ -72,10 +67,8 @@ public class ShopView : MonoBehaviour
 
     public void DisplayItems(List<ItemProperty> items)
     {
-
         foreach (ItemProperty item in items)
         {
-
             GameObject newItem = Instantiate(itemPrefab, parentPanel);
             ItemView itemDisplay = newItem.GetComponent<ItemView>();
             shopController.StoreItem(itemDisplay, shopFilterController);
@@ -86,7 +79,6 @@ public class ShopView : MonoBehaviour
                 shopController.SetItemQuantities(itemDisplay.itemProperty.itemID, itemDisplay.itemProperty.quantity);
                 itemDisplay.ShopDisplayUI();
             }
-
         }
     }
 
@@ -104,14 +96,12 @@ public class ShopView : MonoBehaviour
     {
         shopController.SetCurrentSelectedItem(itemView);
         SetBuySectionValues(isOn);
-
     }
 
     private void SetBuySectionValues(bool isOn)
     {
         if (isOn)
         {
-
             quantityText.text = 0.ToString();
             buyingPriceText.text = 0.ToString();
         }
@@ -134,7 +124,6 @@ public class ShopView : MonoBehaviour
         {
             shopController.PlayNonClickableSound();
         }
-
     }
 
     public void ReduceBuySectionValues()
@@ -158,7 +147,6 @@ public class ShopView : MonoBehaviour
 
     public void DisableBuyingSection()
     {
-
         if (isShopOn == false)
         {
             buySection.alpha = 0;
@@ -211,20 +199,19 @@ public class ShopView : MonoBehaviour
         {
             shopController.PlayNonClickableSound();
         }
-
-
     }
+
     public void DisableNotEnoughMoneyPopUp()
     {
         notEnoughMoneyPopup.alpha = 0;
         notEnoughMoneyPopup.blocksRaycasts = false;
         notEnoughMoneyPopup.interactable = false;
     }
+
     public void DisableWeightExceededPopUp()
     {
         weightExceededPopUp.alpha = 0;
         weightExceededPopUp.blocksRaycasts = false;
         weightExceededPopUp.interactable = false;
     }
-
 }

@@ -1,5 +1,3 @@
-using System;
-using UnityEditor;
 using UnityEngine;
 
 public class GameManager : GenericMonoSingelton<GameManager>
@@ -22,7 +20,6 @@ public class GameManager : GenericMonoSingelton<GameManager>
         CreatePlayer();
         CreateShop();
         CreateInventory();
-
     }
 
     private void CreatePlayer()
@@ -43,7 +40,6 @@ public class GameManager : GenericMonoSingelton<GameManager>
     {
         uiView = GameObject.FindFirstObjectByType<UIView>();
         uiController = new UIController(uiView);
-        
     }
 
     private void CreateShop()
@@ -52,5 +48,4 @@ public class GameManager : GenericMonoSingelton<GameManager>
         shopView = GameObject.FindFirstObjectByType<ShopView>();
         shopController = new ShopController(shopView, shopModel);
     }
-
 }

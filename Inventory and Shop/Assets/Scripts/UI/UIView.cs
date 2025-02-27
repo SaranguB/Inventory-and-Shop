@@ -12,7 +12,6 @@ public class UIView : MonoBehaviour
     [SerializeField] private CanvasGroup itemDeatilsPanelCanvasGroup;
     [SerializeField] private CanvasGroup sellSection;
     
-
     [Header("Item Properties")]
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI itemName;
@@ -24,13 +23,11 @@ public class UIView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemBuyingPriceText;
     [SerializeField] private TextMeshProUGUI itemSellingPriceText;
 
-
     private UIController uiController;
 
     private void OnDisable()
     {
         EventService.Instance.OnItemSelectedEventWithParams.RemoveListener(uiController.SetItemDetailsPanel);
-
     }
     public void OnShopToggleChanged(bool isOn)
     {
@@ -42,14 +39,12 @@ public class UIView : MonoBehaviour
     {
         shoppOrInventoryText.text = isShopOpen ? "Shop" : "Inventory";
         EventSystem.current.SetSelectedGameObject(null);
-
     }
 
     public void SetUIController(UIController uiController)
     {
         this.uiController = uiController;
         EventService.Instance.OnItemSelectedEventWithParams.AddListener(uiController.SetItemDetailsPanel);
-
     }
 
     public void SetItemDetailPanelView(bool isOn, ItemView itemView)
@@ -73,7 +68,6 @@ public class UIView : MonoBehaviour
         this.itemDescriptionText.text = itemView.itemProperty.ItemDescription;
         this.itemBuyingPriceText.text = itemView.itemProperty.buyingPrice.ToString();
         this.itemSellingPriceText.text = itemView.itemProperty.sellingPrice.ToString();
-
     }
 
     public void DisableItemDetailsPanel()
@@ -84,7 +78,4 @@ public class UIView : MonoBehaviour
     {
         return System.Text.RegularExpressions.Regex.Replace(enumValue.ToString(), "(\\B[A-Z])", " $1");
     }
-
-
-
 }
